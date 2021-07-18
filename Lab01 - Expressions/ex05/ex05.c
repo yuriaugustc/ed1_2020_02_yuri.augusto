@@ -1,7 +1,12 @@
 #include <stdio.h>
 
 int main() {
+    float valor, resultado;
     printf("<< Aumento Salarial >>\n");
+    printf("Digite o valor do salario R$: ");
+    scanf("%f", &valor);
+    resultado = valor + (valor * 0.25);
+    printf("Apos 25%% de aumento o salario fica em R$ %.2f", resultado);
 }
 
 /*
