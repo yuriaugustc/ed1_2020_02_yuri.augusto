@@ -1,7 +1,13 @@
 #include <stdio.h>
 
 int main() {
+    int a, b;
     printf("== Troca do conteudo de variaveis ==\n");
+    printf("Entre com o valor de A: ");
+    scanf("%d", &a);
+    printf("Entre com o valor de B: ");
+    scanf("%d", &b);
+    printf("Apos a troca, o valor de A eh %d e o de B eh %d", b, a);
 }
 
 /*
