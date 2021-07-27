@@ -1,11 +1,29 @@
 #include <stdio.h>
 
 int main(){
-    printf("<< Five Values >>\n");
+    int num, vet[6], maior = 0, menor;
+    double media = 0;
 
-    return 0;
+    printf("<< 5 valores >>\n");
+    for(int i = 0; i< 5; i++){
+        printf("Entre com o numero %d: ", i+1);
+        scanf("%d", &vet[i]);
+        if(vet[i] > maior){
+            maior = vet[i];
+        }
+        if(vet[i] < menor){
+            menor = vet[i];
+        }
+        media += vet[i];
+    }
+    printf("Os números digitados são: ");
+    for(int i=0; i < 5; i++){
+        printf("%d ", vet[i]);
+    }
+    printf("\nO maior valor é: %d\n", maior);
+    printf("O menor valor é: %d\n", menor);
+    printf("A média é: %.1lf\n", media/5);
 }
-
 
 /*
 Fazer um programa para ler 5 valores, e, em seguida, mostrar todos os valores

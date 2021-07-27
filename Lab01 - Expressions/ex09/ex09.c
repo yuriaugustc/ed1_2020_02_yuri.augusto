@@ -9,7 +9,7 @@ int main() {
     scanf("%d", &x);
     printf("Entre com a coordenada y: ");
     scanf("%d", &y);
-    dist = sqrt( pow( (x-0), 2) + pow( (y-0), 2));
+    dist = sqrt( pow( (x - 0), 2) + pow( (y - 0), 2));
     printf("A distancia entre os pontos (%d,%d) e (0,0) eh %.1f\n", x , y, dist);
 }
 

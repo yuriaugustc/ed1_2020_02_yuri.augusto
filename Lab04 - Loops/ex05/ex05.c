@@ -1,11 +1,13 @@
 #include <stdio.h>
 
 int main(){
-    int i = 10;
+    int i;
     printf("<< Contagem regressiva >>\n");
-    while(i>=0){
+    printf("Qual é o número inicial? ");
+    scanf("%d", &i);
+    do{
         printf("%d.. ", i);
         i--;
-    }
+    }while(i>=0);
     printf("FIM!");
 }

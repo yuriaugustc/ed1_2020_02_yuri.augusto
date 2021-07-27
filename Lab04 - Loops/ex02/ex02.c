@@ -3,9 +3,9 @@
 int main(){
     int i = 10;
     printf("<< Contagem regressiva >>\n");
-    while(i>=0){
+    do{
         printf("%d.. ", i);
         i--;
-    }
+    }while(i>=0);
     printf("FIM!");
 }

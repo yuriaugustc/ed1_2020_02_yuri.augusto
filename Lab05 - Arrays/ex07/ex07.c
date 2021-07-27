@@ -1,9 +1,27 @@
 #include <stdio.h>
 
 int main(){
-    printf("<< Normalizando as notas >>\n");
+    int i, aluno[5], maior = 0, posicao;
 
-    return 0;
+    printf("<< Normalizando as notas >>\n");
+    for(i = 0; i < 5; i++){
+        printf("Entre com a nota do aluno %d: ", i+1);
+        scanf("%d", &aluno[i]);
+        aluno[i] *= 2;
+        if(aluno[i]>maior){
+            maior = aluno[i];
+        }
+    }
+    for(i = 0; i < 5; i++){
+        if(aluno[i]==maior){
+            aluno[i] = 100;
+        }
+    }
+    printf("\nNotas Normalizadas\n\n");
+    
+    for( i = 0; i < 5; i++){
+        printf("A nota do aluno %d é %d\n", i+1, aluno[i]);
+    }
 }
 
 /*

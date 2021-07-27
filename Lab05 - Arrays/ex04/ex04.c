@@ -1,10 +1,22 @@
 #include <stdio.h>
 
 int main(){
-    printf("<< Listando um vetor de numeros pares>>\n");
+    int num, vet[6];
 
-
-    return 0;
+    printf("<< Listando numeros pares >>\n");
+    for(int i = 0; i< 6; i++){
+        printf("Entre com o numero %d: ", i+1);
+        scanf("%d", &vet[i]);
+        while(vet[i]%2!=0){
+            printf("Erro: Valor inválido\n");
+            printf("Entre com o numero %d: ", i+1);
+            scanf("%d", &vet[i]);
+        }
+    }
+    printf("Os números pares digitados foram: ");
+    for(int i=0; i < 6; i++){
+        printf("%d ", vet[i]);
+    }
 }
 
 /*

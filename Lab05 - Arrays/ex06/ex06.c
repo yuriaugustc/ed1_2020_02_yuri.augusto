@@ -1,9 +1,30 @@
 #include <stdio.h>
 
 int main(){
-    printf("<< Five Values with index >>\n");
+    int num, vet[6], maior = 0, menor, pos_maior, pos_menor;
+    double media = 0;
 
-    return 0;
+    printf("<< 5 valores >>\n");
+    for(int i = 0; i< 5; i++){
+        printf("Entre com o numero %d: ", i+1);
+        scanf("%d", &vet[i]);
+        if(vet[i] > maior){
+            maior = vet[i];
+            pos_maior = i;
+        }
+        if(vet[i] < menor){
+            menor = vet[i];
+            pos_menor = i;
+        }
+        media += vet[i];
+    }
+    printf("Os números digitados são: ");
+    for(int i=0; i < 5; i++){
+        printf("%d ", vet[i]);
+    }
+    printf("\nO maior valor é: %d, localizado na posição %d do vetor\n", maior, pos_maior);
+    printf("O menor valor é: %d, localizado na posição %d do vetor\n", menor, pos_menor);
+    printf("A média é: %.1lf\n", media/5);
 }
 
 /*

@@ -1,10 +1,18 @@
 #include <stdio.h>
 
 int main(){
-    printf("<< Listando um vetor em ordem inversa !!! >>\n");
-    return 0;
-}
+    int num, vet[6];
 
+    printf("<< Listando um vetor em ordem inversa >>\n");
+    for(int i = 0; i< 6; i++){
+        printf("Entre com o numero %d: ", i+1);
+        scanf("%d", &vet[i]);
+    }
+    printf("A ordem inversa dos números é: ");
+    for(int i = 5; i >= 0; i--){
+        printf("%d ", vet[i]);
+    }
+}
 /*
 Faça um programa em que o usuário digita 6 números inteiros e o programa mostra
 na tela os 6 números digitados na ordem inversa (obrigatório o uso de loops)
