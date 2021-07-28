@@ -1,7 +1,42 @@
 #include <stdio.h>
+#include <windows.h>
 
 int main(){
+    int num, i;
+    struct aluno{
+        int numero;
+        char classe;
+        float cra;
+    };
+
     printf("<< Universidade X >>\n");
+    printf("Quantos alunos serão cadastrados? ");
+    scanf("%d", &num);
+    if(num>10000){
+        printf("Erro! Você só pode cadastrar no máximo 10.000 alunos!\n");
+        Sleep(1500);
+        main();
+        return 0;
+    }
+    struct aluno matricula[num];
+    printf("\n");
+    for(i = 0; i < num; i++){
+        printf("Entre com o número do aluno: ");
+        scanf("%d", &matricula[i].numero);
+        printf("Entre com a classe social do aluno %d: ", matricula[i].numero);
+        scanf(" %c", &matricula[i].classe);
+        printf("Enter com o CRA do aluno %d: ", matricula[i].numero);
+        scanf("%f", &matricula[i].cra);
+        printf("\n");
+    }
+
+    printf("==== Alunos Cadastrados ====\n");
+    for(i = 0; i < num; i++){
+        printf("Numero: %d ", matricula[i].numero);
+        printf("Classe Social: %c ", matricula[i].classe);
+        printf("CRA: %.2f ", matricula[i].cra);
+        printf("\n");
+    }
 
     return 0;
 }
