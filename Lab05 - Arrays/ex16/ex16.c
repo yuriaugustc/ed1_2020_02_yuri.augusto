@@ -1,11 +1,41 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(){
-    printf("<< Valores iguais >>\n");
+    int i, j, k, n, f, num[8], rep[8] = {0,0,0,0,0,0,0,0}, aux[8] = {0,0,0,0,0,0,0,0}, cont = 0, ctrl = 0;
 
+    printf("<< Valores iguais >>\n");
+    for(i = 0; i < 8; i++){
+        printf("Entre com o numero %d: ", i+1);
+        scanf("%d", &num[i]);
+        aux[i] = num[i];
+    }
+    for(i = 0; i < 8; i++){
+        for(j = i+1; j <= 8; j++){
+            if(num[j] == num[i]){
+                rep[i] = num[j];
+                aux[i]++;
+                cont++;
+            }
+        }
+    }
+    
+    /*for(i = 0; i < cont; i++){
+        for(j = i+1; j<=cont; j++){
+            if(rep[j] == rep[i]){
+                rep[j] = 0;
+            }
+        }
+    }*/
+
+    printf("Valores repetidos: \n");
+    for(i = 0; i < cont; i++){
+        if(rep[i] != 0){
+        printf("%d aparece %d vez(es)\n", rep[i], aux[i]);
+        }
+    }
     return 0;
 }
-
 /*
 
 Faça um programa que leia um vetor de 8 posições e verifique se existem 
