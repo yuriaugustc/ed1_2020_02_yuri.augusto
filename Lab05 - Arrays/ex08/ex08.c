@@ -2,8 +2,8 @@
 #include <math.h>
 
 int main(){
-    int i, media, valor[5];
-    double desvio, aux = 0;
+    int i,  valor[5];
+    double desvio, media, aux = 0;
 
     printf("<< Media e desvio-padrao >>\n");
     for(i = 0; i < 5; i++){
@@ -13,10 +13,10 @@ int main(){
     }
     media = aux/5;
     for(i = 0; i < 5; i++){
-        aux += pow((media - valor[i]), 2);
+        aux += pow((media - valor[i]), 2.0);
     }
     desvio = sqrt(aux/5);
-    printf("A media eh %d e o desvio-padrao eh %.2lf", media, desvio);
+    printf("A media eh %.2lf e o desvio-padrao eh %.2lf", media, desvio);
     return 0;
 }
 

@@ -3,11 +3,6 @@
 
 int main(){
     int num, i;
-    struct aluno{
-        int numero;
-        char classe;
-        float cra;
-    };
 
     printf("<< Universidade X >>\n");
     printf("Quantos alunos serão cadastrados? ");
@@ -18,23 +13,24 @@ int main(){
         main();
         return 0;
     }
-    struct aluno matricula[num];
+    int numero[num];
+    char classe[num];
+    float cra[num];
     printf("\n");
     for(i = 0; i < num; i++){
         printf("Entre com o número do aluno: ");
-        scanf("%d", &matricula[i].numero);
-        printf("Entre com a classe social do aluno %d: ", matricula[i].numero);
-        scanf(" %c", &matricula[i].classe);
-        printf("Enter com o CRA do aluno %d: ", matricula[i].numero);
-        scanf("%f", &matricula[i].cra);
+        scanf("%d", &numero[i]);
+        printf("Entre com a classe social do aluno %d: ", numero[i]);
+        scanf(" %c", &classe[i]);
+        printf("Enter com o CRA do aluno %d: ", numero[i]);
+        scanf("%f", &cra[i]);
         printf("\n");
     }
-
     printf("==== Alunos Cadastrados ====\n");
     for(i = 0; i < num; i++){
-        printf("Numero: %d ", matricula[i].numero);
-        printf("Classe Social: %c ", matricula[i].classe);
-        printf("CRA: %.2f ", matricula[i].cra);
+        printf("Numero: %d ", numero[i]);
+        printf("Classe Social: %c ", classe[i]);
+        printf("CRA: %.2f ", cra[i]);
         printf("\n");
     }
 
