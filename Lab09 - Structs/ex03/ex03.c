@@ -1,7 +1,41 @@
 #include <stdio.h>
+#include <string.h>
 
 int main(){
-    printf("<<  >>\n");
+    printf("<< Endereço >>\n");
+    struct endereco {
+        int numero;
+        char rua[50];
+        char complemento[50];
+        char cidade[50];
+        char estado[3];
+        char cep[10];
+    };
+    struct endereco enderecos[3];
+    int cep_mg = 0;
+
+    for(int i = 0; i < 3; i++){
+        printf("Rua: ");
+        fgets(enderecos[i].rua, 50, stdin);
+        printf("Numero: ");
+        scanf("%d", &enderecos[i].numero);
+        printf("Complemento: ");
+        fgets(enderecos[i].complemento, 50, stdin);
+        printf("Cidade: ");
+        fgets(enderecos[i].cidade, 50, stdin);
+        printf("Estado: ");
+        fgets(enderecos[i].estado, 50, stdin);
+        printf("CEP: ");
+        fgets(enderecos[i].cep, 50, stdin);
+        printf("\n");
+        if((strcmp(enderecos[i].estado, "MG")) == 0){
+            cep_mg++;
+        }
+    }
+    printf("Enderecos cadastrados que sao de \"MG\": \n");
+    for(int i = 0; i < cep_mg; i++){
+        printf("%s, %d. %s. %s-%s, %s.\n", enderecos[i].rua, enderecos[i].numero, enderecos[i].complemento, enderecos[i].cidade, enderecos[i].cep);
+    }
 
     return 0;
 }
@@ -13,10 +47,10 @@ Cadastre 3 endereços. Mostre ao final, todos os dados dos endereços cadastrado
 
 Endereco*
 +------------+------------+---------------+
-| Rua        | Número     |  Complemento  |    
+| Rua        | Número     |  Complemento  |
 +------------+------------+---------------+
-| Cidade     | Estado     |     CEP       | 
-+------------+------------+---------------+
+| Cidade     | Estado     |     CEP       |
++------------+------------+---------------+ 
 
 
 -------------------------------------------------------------------------------

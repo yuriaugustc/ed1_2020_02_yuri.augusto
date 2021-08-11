@@ -1,8 +1,31 @@
 #include <stdio.h>
 
 int main(){
-    printf("<<  >>\n");
-
+    printf("<< Data >>\n");
+    struct data{
+        int dia;
+        char mes[50];
+        int ano;
+    };
+    int maior = 0;
+    struct data datas[3];
+    for(int i = 0; i < 3; i++){
+        printf("Digite o dia: ");
+        scanf("%d", &datas[i].dia);
+        printf("Digite o mes: ");
+        scanf("%s", &datas[i].mes);
+        printf("Digite o ano: ");
+        scanf("%d", &datas[i].ano);
+        printf("\n");
+        if(datas[i].ano > maior){
+            maior = datas[i].ano;
+        }
+    }
+    printf("Datas cadastradas: \n");
+    for(int i = 0; i < 3; i++){
+        printf("Dia %d de %s de %d.\n", datas[i].dia, datas[i].mes, datas[i].ano);
+    }
+    printf("%d foi o maior ano cadastrado.\n", maior);
     return 0;
 }
 
