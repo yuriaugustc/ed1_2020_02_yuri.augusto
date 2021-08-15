@@ -2,6 +2,8 @@
 
 int main(){
     printf("<< Pointers >>\n");
+    int val[5] = {2,4,5,8,10};
+
     int a = 40; // cria uma variável do tipo inteiro, chamada a, e inicializa 
                 // com valor 40
     int *p; // cria uma variável do tipo ponteiro para inteiro, chamada p, e o 
@@ -9,10 +11,18 @@ int main(){
     p = &a; // faz p receber o endereço de a. Dizemos que p aponta para a
 
     //(a)
-
+    printf("A = %u\n", &a);
+    printf("A = %u\n", p);
     //(b)
-
+    *p = 59;
     //(c)
+    p = &val[4];
+    scanf("%d", p);
+    printf("val[5] = {");
+    for(int i = 0; i < 5; i++){
+        printf("%d,", val[i]);
+    }
+    printf("\b}\n");
 
     return 0;
 }

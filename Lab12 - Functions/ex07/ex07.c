@@ -1,9 +1,20 @@
 #include <stdio.h>
 
-int main(){
-    printf("Digite o número A: ");
-    printf("Digite o número B: ");
+void Troque(double *a, double *b){
+    a = &b;
+    b = &a;
+    return a, b;
+}
 
+int main(){
+    double *p_a, *p_b;
+    double a, b;
+    printf("Digite o número A: ");
+    scanf("%lf", &a);
+    printf("Digite o número B: ");
+    scanf("lf", &b);
+    //p_a = Troque(&a,&b);
+    //p_b = Troque(&a,&b);
     return 0;
 }
 

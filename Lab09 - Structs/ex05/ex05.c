@@ -1,8 +1,84 @@
 #include <stdio.h>
+#include <string.h>
+
+    struct aluno {
+        char nome[50];
+        double nota[3];
+        double media;
+        int num_falta;
+    };
 
 int main(){
-    
-    printf("<<  >>\n");
+    struct aluno cadastro[3];
+    double media2 = 0, prova1 = 0, media1 = 100;
+    char nome0[50], nome1[50], nome2[50];
+
+    printf("<< Matricula de Aluno >>\n");
+    for(int i = 0; i < 3; i++){
+        printf("\nEntre com os dados do %d° aluno\n", i+1);
+        printf("Matricula: %d\n", i+1);
+        printf("Nome: ");
+        setbuf(stdin, NULL);
+        scanf("%[^\n]s", &cadastro[i].nome);
+        printf("Nota da prova 1: ");
+        scanf("%lf", &cadastro[i].nota[0]);
+        printf("Nota da prova 2: ");
+        scanf("%lf", &cadastro[i].nota[1]);
+        printf("Nota da prova 3: ");
+        scanf("%lf", &cadastro[i].nota[2]);
+        printf("Numero de faltas: ");
+        scanf("%d", &cadastro[i].num_falta);
+        cadastro[i].media = (cadastro[i].nota[0]+cadastro[i].nota[1]+cadastro[i].nota[2])/3;
+        printf("%.2lf", cadastro[i].media);
+        if(cadastro[i].media > media2){
+            media2 = cadastro[i].media;
+            strcpy(nome1, cadastro[i].nome);
+        }
+        if(cadastro[i].nota[0] > prova1){
+            prova1 = cadastro[i].nota[0];
+            strcpy(nome0, cadastro[i].nome);
+        }
+        if(cadastro[i].media < media1){
+            media1 = cadastro[i].media;
+            strcpy(nome2, cadastro[i].nome);
+        }
+    }
+
+    printf("Aluno com maior nota na prova 1 foi %s com %.2lf pontos.\n", nome0, prova1);
+    printf("Aluno com maior media geral foi %s com %.2lf pontos.\n", nome1, media2);
+    printf("Aluno com menor media geral foi %s com %.2lf pontos.\n", nome2, media1);
+
+    printf("Situação dos Alunos: \n");
+    printf("1- %s. ", cadastro[0].nome);
+    if((cadastro[0].media >= 60) && (cadastro[0].num_falta <= 18)){
+        printf("Aprovado!\n");
+    }
+    else if(cadastro[0].num_falta > 18){
+        printf("Reprovado por falta.\n");
+    }
+    else{
+        printf("Reprovado por nota.\n");
+    }
+    printf("2- %s. ", cadastro[1].nome);
+    if((cadastro[1].media >= 60) && (cadastro[1].num_falta <= 18)){
+        printf("Aprovado!\n");
+    }
+    else if(cadastro[1].num_falta > 18){
+        printf("Reprovado por falta.\n");
+    }
+    else{
+        printf("Reprovado por nota.\n");
+    }
+    printf("3- %s. ", cadastro[2].nome);
+    if((cadastro[2].media >= 60) && (cadastro[2].num_falta <= 18)){
+        printf("Aprovado!\n");
+    }
+    else if(cadastro[2].num_falta > 18){
+        printf("Reprovado por falta.\n");
+    }
+    else{
+        printf("Reprovado por nota.\n");
+    }
     return 0;
 }
 

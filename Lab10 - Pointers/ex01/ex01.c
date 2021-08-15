@@ -1,8 +1,24 @@
 #include <stdio.h>
 
 int main(){
+    int val[5] = {2,4,5,8,10};
+    unsigned int *p;
+    p = &val[2];
+    
     printf("<< Pointers >>\n");
-
+    
+    printf("val[5] = {");
+    for(int i = 0; i < 5; i++){
+        printf("%d,", val[i]);
+    }
+    printf("\b}\n");
+    printf("Troque de 5 para 6: ");
+    scanf("%d", p);
+    printf("val[5] = {");
+    for(int i = 0; i < 5; i++){
+        printf("%d,", val[i]);
+    }
+    printf("\b}\n");
     return 0;
 }
 

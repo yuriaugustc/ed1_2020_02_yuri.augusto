@@ -1,8 +1,16 @@
 #include <stdio.h>
 
-int main(){
-    printf("Digite a quantidade de linhas a serem impressas: ");
+void DesenhaLinha(int num){
+    for(int i = 0; i < num; i++){
+        printf("========\n");
+    }
+}
 
+int main(){
+    int num = 0;
+    printf("Digite a quantidade de linhas a serem impressas: ");
+    scanf("%d", &num);
+    DesenhaLinha(num);
     return 0;
 }
 

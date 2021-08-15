@@ -28,13 +28,12 @@ int main(){
         printf("CEP: ");
         fgets(enderecos[i].cep, 50, stdin);
         printf("\n");
-        if((strcmp(enderecos[i].estado, "MG")) == 0){
-            cep_mg++;
-        }
     }
     printf("Enderecos cadastrados que sao de \"MG\": \n");
     for(int i = 0; i < cep_mg; i++){
-        printf("%s, %d. %s. %s-%s, %s.\n", enderecos[i].rua, enderecos[i].numero, enderecos[i].complemento, enderecos[i].cidade, enderecos[i].cep);
+        if((strcmp(enderecos[i].estado, "MG")) == 0){
+            printf("%s, %d. %s. %s-%s, %s.\n", enderecos[i].rua, enderecos[i].numero, enderecos[i].complemento, enderecos[i].cidade, enderecos[i].cep);
+        }
     }
 
     return 0;

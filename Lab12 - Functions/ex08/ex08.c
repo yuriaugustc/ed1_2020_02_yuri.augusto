@@ -1,9 +1,27 @@
 #include <stdio.h>
+#include <math.h>
+
+double incp(int num, double per){
+    double aux;
+    if(num >= 0){
+    aux = num + (per*100);
+    return aux;
+    }
+    else{
+    aux = num - (per*100);
+    return aux;
+}
+}
 
 int main(){
+    int num;
+    double per;
     printf("Digite o valor de y: ");
+    scanf("%d", &num);
     printf("Digite o percentual de alteração x: ");
-
+    scanf("%lf", &per);
+    double aux = incp(num, per);
+    printf("O valor alterado eh: %.0lf\n", aux);
     return 0;
 }
 
