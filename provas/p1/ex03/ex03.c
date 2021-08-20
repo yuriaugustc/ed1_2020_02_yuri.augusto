@@ -38,8 +38,8 @@ int main(){
     scanf("%lf", &compra);
     printf("Digite o preco de venda:");
     scanf("%lf", &venda);
-    lucro = (venda - compra)*100;
-    printf("Preço de compra: %.2lf; Preco de venda:11; Lucro Pequeno de");
+    lucro = (venda - compra)/compra;
+    printf("Preço de compra: %.2lf; Preco de venda: %.2lf; Lucro Pequeno de %.2lf", compra, venda, lucro);
    // exemplo de saída:
    // Preço de compra: 10; Preco de venda:11; Lucro Pequeno de 10%
    // Preço de compra: 10; Preco de venda: 9; Prejuízo de 10%
