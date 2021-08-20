@@ -29,14 +29,17 @@
 */
 
 int main(){
-
+    double compra, venda;
+    double lucro;
    // Ex03: utilizando a função de cálculo de lucro, leia o preço de compra e venda
    // e mostre o percentual de lucro ou prejuízo e a classificação de acordo com
    // a tabela acima. 
-   printf("Digite o preco de compra:");
-
-   printf("Digite o preco de venda:");
-   
+    printf("Digite o preco de compra:");
+    scanf("%lf", &compra);
+    printf("Digite o preco de venda:");
+    scanf("%lf", &venda);
+    lucro = (venda - compra)*100;
+    printf("Preço de compra: %.2lf; Preco de venda:11; Lucro Pequeno de");
    // exemplo de saída:
    // Preço de compra: 10; Preco de venda:11; Lucro Pequeno de 10%
    // Preço de compra: 10; Preco de venda: 9; Prejuízo de 10%
