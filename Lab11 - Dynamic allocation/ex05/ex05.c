@@ -6,7 +6,7 @@ struct ponto{
 };
 
 int main(){
-    int n, esq, dir, cim, baix, aux = 0,aux1 =0, aux2 = 0, aux3 = 0;
+    int n, esq, dir = 0, cim = 0, baix, aux = 0,aux1 =0, aux2 = 0, aux3 = 0;
     struct ponto *pointer, *esquerda, *direita, *cima, *baixo;
     printf("Quantos pontos deseja digitar: ");
     scanf("%d", &n);
@@ -20,18 +20,22 @@ int main(){
         if((pointer[i].x) < esq){
             esq = pointer[i].x;
             esquerda = &pointer[i];
+            aux = i;
         }
         else if((pointer[i].x) > dir){
             dir = pointer[i].x;
-            direita = &pointer+i; 
+            direita = &pointer[i];
+            aux1 = i;
         }
         else if((pointer[i].y) < baix){
             baix = pointer[i].y;
-            baixo = &pointer+i; 
+            baixo = &pointer[i]; 
+            aux2 = i;
         }
         else if((pointer[i].y) > cim){
             cim = pointer[i].y;
-            cima = &pointer+i;
+            cima = &pointer[i];
+            aux3 = i;
         }
     }
     printf("Pontos digitados: ");

@@ -9,27 +9,25 @@
   };
 
 int main(){
-    int i, dia, cons_total;
-    double soma[5];
+    int i, dia, cons_total = 0;
+    double soma[] = {0,0,0,0,0};
     struct eletro domesticos[5];
     printf("<< Eletrodomesticos >>\n");
     for(i = 0; i < 5; i++){
       printf("\nInforme os dados do %d° eletrodomestico: \n", i+1);
       printf("Nome: ");
-      fgets(domesticos[i].nome, 16, stdin);
+      scanf("%[^\n]s", domesticos[i].nome);
       printf("Potencia: ");
       scanf("%lf", &domesticos[i].potencia);
       printf("Tempo ativo por dia: ");
       scanf("%lf", &domesticos[i].temp);
       domesticos[i].cons = domesticos[i].potencia * domesticos[i].temp;
+      cons_total += domesticos[i].cons;
       getchar();
     }
-    i = strstr(domesticos[i].nome,'\n');
+  
     
-    for(i = 0; i < 5; i++){
-      soma[i] = (domesticos[i].cons*100)/cons_total;
-    }
-    printf("Informe um valor de tempo (em dia): ");
+    printf("\nInforme um valor de tempo (em dia): ");
     scanf("%d", &dia);
     cons_total = (domesticos[0].cons+domesticos[1].cons+domesticos[2].cons+domesticos[3].cons+domesticos[4].cons)*dia;
     printf("Consumo total: %d\n", cons_total);

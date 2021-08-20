@@ -1,10 +1,30 @@
 #include <stdio.h>
+#include <stdlib.h>
 //lembre-se de incluir as bibliotecas adequadas
 
-int main(){
-    printf("<<  >>\n");
+int main(void){
+ double *produtos;
+ int n,i;
 
-    return 0;
+ printf("Informe o número de produtos: ");
+  scanf("%d",&n);
+  // é necessário usar o comando malloc para alocar a memória
+  produtos = (double *)malloc(n*sizeof(double));
+
+  for   (i = 0; i < n; i++){
+    printf("Informe o valor do produto %d R$: ",i+1);
+    scanf("%lf", &produtos[i]);
+  } 
+
+  printf("\nProdutos cadastrados\n" );
+  for   (i = 0; i < n; i++){
+    printf("Produto %d  - R$: %.2f\n" ,i+1, produtos[i]);
+  }
+  
+  // ao terminar de usar o vetor, devemos liberar a memória
+  free(produtos);
+
+  return 0;
 }
 
 /*
@@ -52,9 +72,9 @@ int main(void){
 
 Suas considerações:
 
-Quais foram os valores de n testados?
-O que significa o valor de n?
+Quais foram os valores de n testados?  10
+O que significa o valor de n?   Significa a quantidade de produtos que teremos; 
 o que significa o valor de de sizeof(double) no 
-commando malloc(n*sizeof(double)).
+commando malloc(n*sizeof(double)).   Significa a alocacao do tamanho correto da variavel, no caso estamos utilizando n como double;
 
 */
