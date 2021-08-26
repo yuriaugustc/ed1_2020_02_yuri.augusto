@@ -10,7 +10,7 @@ no github.
     Agencia bancaria (num.conta, saldo, nome do titular)
     Jogos (nome do jogo, idade mínima, fabricante)
     ....
-- Criei uma função específica para tralhar com os dados que estão no TAD
+- Crie uma função específica para tralhar com os dados que estão no TAD
   Ex:
     Matricular novo Alunos
     Alterar os saldo
