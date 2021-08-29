@@ -3,7 +3,7 @@
 #include "lib.h"
 
 int main(){
-    int i, aux = 0;
+    int aux = 0;
     char nome[50];
     char matr[12];
     double cra;
@@ -16,28 +16,28 @@ int main(){
         printf("Matricula: ");
         fgets(matr, 12, stdin);
         printf("CRA: ");
-        scanf("%lf", cra);
+        scanf("%lf", &cra);
         printf("\n");
     //}
     Aluno *p;
     p = setAluno(nome, matr, cra);
     printf("Aluno cadastrado com sucesso!\n");
 
-    altera_cra(p, 100);
+    altera_cra(p, 100.0);
     printf("Como o aluno acabou de ser cadastrado, seu CRA foi redefindo para 100;\n");
     
     getAluno(p);
     
     //free(p);
 
-    int aux = killAluno(p);
+    aux = killAluno(p);
     if(aux == 0){
-        printf("Aluno descadastrado com sucesso!\n");
+        printf("\nAluno descadastrado com sucesso!\n");
     }
     else{
         printf("Algo de errado aconteceu, tentando novamente...\n");
         free(p);
-        printf("Aluno descadastrado com sucesso!\n");
+        printf("\nAluno descadastrado com sucesso!\n");
     }
     /* printf("Pesquisando o aluno com maior coeficiente de aproveitamento: \n");
      * aux = search(aluno);

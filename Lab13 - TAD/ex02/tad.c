@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "lib.h"
@@ -29,8 +30,8 @@ Aluno* setAluno(char *nom, char *matr, double cra){
  * Entrada: Recebe como entrada o ponteiro para o endereço de memoria alocada para a struct e o valor a ser alterado;
  * Saída: Não possui (void);
  */
-void altera_cra(Aluno *p, double *cra){ 
-    p->cra = *cra;
+void altera_cra(Aluno *p, double cra){ 
+    p->cra = cra;
 }
 
 /*
@@ -41,7 +42,7 @@ void altera_cra(Aluno *p, double *cra){
  */
 void getAluno(Aluno *p){
     printf("Nome do Aluno: %s", p->nome);
-    printf("Matrícula: %s\n", p->nome);
+    printf("Matrícula: %s\n", p->matricula);
     printf("CRA: %.2lf", p->cra);
 }
 
