@@ -7,9 +7,9 @@ int main(void){
  int n,i;
 
  printf("Informe o número de produtos: ");
-  scanf("%d",&n);
+ scanf("%d",&n);
   // é necessário usar o comando malloc para alocar a memória
-  produtos = (double *)malloc(n*sizeof(double));
+  produtos = (double *)malloc(n*sizeof(double)); 
 
   for   (i = 0; i < n; i++){
     printf("Informe o valor do produto %d R$: ",i+1);

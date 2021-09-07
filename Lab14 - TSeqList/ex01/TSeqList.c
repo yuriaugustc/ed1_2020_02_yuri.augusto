@@ -69,16 +69,6 @@ int imprime_lista(Lista *li)
         printf("\nNome: %s\n", li->dados[i].nome);
         printf("Notas: %f;%f;%f\n", li->dados[i].n1, li->dados[i].n2, li->dados[i].n3);
     }
-    /*
-    struct aluno temp;
-
-    for (int i = 0; i < li->qtd; i++){
-        temp = li->dados[i];
-        printf("\nMatricula: %d\n", temp.matricula);
-        printf("\nNome: %s", temp.nome);
-        printf("Notas: %f;%f;%f", temp.n1, temp.n2, temp.n3);
-    }
-    */
     return 0;
 }
 
