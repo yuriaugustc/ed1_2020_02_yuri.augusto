@@ -2,7 +2,7 @@
 !**/
 !*.c
 !.gitignore
-!.Práticas
+!Práticas
 !*.h
 !*.md
 !*.out*
