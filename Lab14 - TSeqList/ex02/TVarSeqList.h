@@ -10,7 +10,6 @@ struct aluno{
 typedef struct lista Lista;
 
 Lista *cria_lista();
-void realoca_lista(Lista *li);
 void libera_lista(Lista *li);
 int compactar_lista(Lista *li);
 int tam_lista(Lista *li);

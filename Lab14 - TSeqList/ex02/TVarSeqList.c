@@ -8,7 +8,7 @@ struct lista
 {
     int qtd;
     int num;
-    struct aluno dados[100];
+    struct aluno dados[5];
 };
 
 Lista *cria_lista()
@@ -28,7 +28,7 @@ void realoca_lista(Lista *li){
 }
 
 int compactar_lista(Lista *li){
-    int aux = ceil(li->qtd/100) * 100;
+    int aux = ceil(li->qtd/10) * 10;
     li = (Lista *)realloc(li, aux * sizeof(int));
     li->qtd = aux;
     if(li == NULL)
@@ -84,7 +84,7 @@ int imprime_lista(Lista *li)
     {
         printf("\nMatricula: %d\n", li->dados[i].matricula);
         printf("\nNome: %s\n", li->dados[i].nome);
-        printf("Notas: %f;%f;%f\n", li->dados[i].n1, li->dados[i].n2, li->dados[i].n3);
+        printf("Notas: %.2f; %.2f; %.2f\n", li->dados[i].n1, li->dados[i].n2, li->dados[i].n3);
     }
     
     return 0;
