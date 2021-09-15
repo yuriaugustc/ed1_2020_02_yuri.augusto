@@ -1,3 +1,0 @@
-$>gcc–c  main.c–o main.o
-$>gcc–c TMat2D.c –o TMat2D.o
-$>gcc–o TADMat2D.exe main.oTMat2D.o
