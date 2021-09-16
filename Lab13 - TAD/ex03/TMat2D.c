@@ -27,15 +27,27 @@ TMat2D *mat2D_create(int nrows, int ncolumns){
 }
 
 int mat2D_set_value(TMat2D *mat, int i, int j, double val){
-    
+    if(mat[i*j].data != NULL){
+        *(mat[i*j].data) = val;
+        return 0;
+    }
+    else
+        return -1;
+}
+
+double mat2D_get_value(TMat2D *mat, int i, int j, double *val){
+    if(mat[i*j].data != NULL){
+        return *(mat[i*j].data);
+    }
+    else 
+        return -1;
 }
 
 int set_random(TMat2D *mat, int lin, int col){
-    int i, j;
 
     srand(time(NULL));
-    for (i = 0; i < (lin*col); i++) { 
-            mat[i].data = (rand()/(int) RAND_MAX) * 100;
+    for(int i = 0; i < (lin*col); i++){
+        *(mat[i].data) = (rand()/(double) RAND_MAX) * 100;
     }
     return 0;
 }
