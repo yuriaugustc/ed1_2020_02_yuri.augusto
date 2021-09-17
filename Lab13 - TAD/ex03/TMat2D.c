@@ -95,7 +95,7 @@ TMat2D *mat2d_mult_2_mat(TMat2D *mat1, TMat2D *mat2){
         mult = mat2D_create(mat1->nrows, mat2->ncolumns);
         for(int i = 0; i < mat1->ncolumns; i++)
             for(int j = 0; j < mat2->nrows; j++){
-                mult->data[i*j] = ;
+                mult->data[i*j] = mat1->data[] * mat2->data[];
             }
             
     }
