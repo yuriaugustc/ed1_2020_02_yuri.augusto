@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "TMat2D.h"
 
@@ -34,6 +35,8 @@ TMat2D *mat2D_create(int nrows, int ncolumns){
  *          (0 = success; -1 = fail);
  */
 int mat2D_set_value(TMat2D *mat, int i, int j, double val){
+    i -= 1; // reducing because the vector initializes in 0, and that the user don't need to konw ;) ;
+    j -= 1; // reducing because the vector initializes in 0, and that the user don't need to know ;) ;
     if(mat[i*j].data != NULL){
         mat->data[i*j] = val;
         return 0;
@@ -47,6 +50,8 @@ int mat2D_set_value(TMat2D *mat, int i, int j, double val){
  *  Output: the value of requisited position;
  */
 double mat2D_get_value(TMat2D *mat, int i, int j, double *val){
+    i -= 1; // reducing because the vector initializes in 0, and that the user don't need to konw ;) ;
+    j -= 1; // reducing because the vector initializes in 0, and that the user don't need to know ;) ;
     if(mat[i*j].data != NULL){
         return mat->data[i*j];
     }
@@ -61,9 +66,8 @@ double mat2D_get_value(TMat2D *mat, int i, int j, double *val){
  */
 int mat2d_set_random(TMat2D *mat){
 
-    srand(time(NULL));
     for(int i = 0; i < (mat->nrows*mat->ncolumns); i++){
-        mat->data[i] = (rand()/(double) RAND_MAX) * 100;
+        mat->data[i] = (rand()/(double) RAND_MAX) * 256/8 * 100;
     }
     return 0;
 }
@@ -93,13 +97,25 @@ TMat2D *mat2d_mult_2_mat(TMat2D *mat1, TMat2D *mat2){
     TMat2D *mult;
     if(mat1->ncolumns == mat2->nrows){
         mult = mat2D_create(mat1->nrows, mat2->ncolumns);
-        for(int i = 0; i < mat1->ncolumns; i++)
+        for(int i = 0; i < mat1->ncolumns; i++){
             for(int j = 0; j < mat2->nrows; j++){
-                mult->data[i*j] = ;
+                mult->data[i*j] = mat1->data[i*j] + mat2->data[j*i];
             }
-            
-    }
+        }
     return mult;
+    }
+    else
+        return NULL;
+}
+
+/*  Descripition: This function print the content of matrix informed; 
+ *  Input: The matrix's pointer;
+ *  Output: The matrix's content; 
+ */
+void mat2d_print_matrix(TMat2D *mat){
+    for(int i = 0; i < (mat->nrows*mat->ncolumns); i++){
+        printf("%.2lf ", mat->data[i]);
+    }
 }
 
 /*  Descripition: This function deallocate the matrix's memory; 
