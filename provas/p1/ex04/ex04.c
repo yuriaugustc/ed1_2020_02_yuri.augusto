@@ -7,7 +7,7 @@ struct ponto{
 };
 
 struct circulo{
-    struct ponto raio;
+    struct ponto raio;// check:<<<erro: errado>>>>
 };
 
    // Ex04: Um círculo pode ser definido com duas informações
@@ -29,7 +29,7 @@ int main(){
     scanf("%lf", &circ.raio.x);
     printf("Digite a posição y: ");
     scanf("%lf", &circ.raio.y);
-    r = circ.raio.y - circ.raio.x;
+    r = circ.raio.y - circ.raio.x;// check:<<<erro: ??>>>>
     area = 3.14 * pow(r, 2);
     dist = floor(sqrt((circ.raio.x*circ.raio.x) + (circ.raio.y * circ.raio.y)));
     printf("Circulo: Centro (%.1lf,%.1lf); Raio %.2lf; Área: %.2lf; Distancia: %.2lf", circ.raio.x, circ.raio.y, r, area, dist);

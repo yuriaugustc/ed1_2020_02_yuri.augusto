@@ -14,6 +14,7 @@ struct livro{
     char nome[50];
     double preco;
     char uso[10];
+// check:<<<erro: e1.01a: Novo/Usado deve ser booleano (no caso, int) ; Pode-se usar um char, mas com isso exige-se sempre uma comparação de valores>>>>
     int ano;
 };
 
@@ -25,7 +26,7 @@ int main(){
     //  - ler do teclado as informações dos livros
     printf("Informe quantos livros deseja cadastrar: ");
     scanf("%d", &num);
-    vet = (int *) malloc(num * sizeof(struct livro));
+    vet = (int *) malloc(num * sizeof(struct livro));// check:<<<erro:  cast para int?>>>>
     for(int i = 0; i < num; i++){
         printf("\nDigite o nome do %d° livro: ", i+1);
         setbuf(stdin, NULL);
@@ -44,6 +45,6 @@ int main(){
         printf("\nCondicao: %s", vet[i].uso);
         printf("\nAno: %d", vet[i].ano);
     }*/
-
+// check:<<<erro: e1.5: Falou liberar memória com free>>>>
     return 0;
 }
