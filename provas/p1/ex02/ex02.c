@@ -47,6 +47,8 @@ int main(){
             }
         }
     }
+ // check:<<<erro: não fez a função>>>>
+ // check:<<<erro: e2.1: Chamada de função errada no programa principal>>>>
     printf("Livro usado mais antigo: \n");
     printf("Nome: %s\n", biblioteca[livro].nome);
     printf("Preço: %.2lf\n", biblioteca[livro].preco);

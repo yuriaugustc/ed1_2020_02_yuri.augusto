@@ -27,6 +27,7 @@
 +-------------------+-----------------------------------------------+----------------+
 
 */
+// check:<<<erro: não fez a função>>>>
 
 int main(){
     double compra, venda;
@@ -38,10 +39,13 @@ int main(){
     scanf("%lf", &compra);
     printf("Digite o preco de venda:");
     scanf("%lf", &venda);
+    // check:<<<erro: e3.3: Cálculo com erros (não corresponde a porcentagem pedida OU erro na fórmula OU porcentagem baseada na venda e não na compra OU divisão inteira )>>>>    lucroPercent = (venda-compra)*10;
+
     lucro = (venda - compra)*compra;
     printf("Preço de compra: %.2lf; Preco de venda: %.2lf; Lucro Pequeno de %.0lf%%", compra, venda, lucro);
     //if(){
-
+// check:<<<erro: não fez os testes IF>>>>
+// check:<<<erro: não chamou a função>>>>
    // }
    // exemplo de saída:
    // Preço de compra: 10; Preco de venda:11; Lucro Pequeno de 10%
