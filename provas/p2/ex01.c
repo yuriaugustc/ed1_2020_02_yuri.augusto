@@ -20,4 +20,21 @@ troca_pos_lista( lista, 4, 10)
     struct aluno dados[MAX];
  };
 
+int troca_pos_lista(Lista *li, int pos1, int pos2){
+    if(li == NULL)
+        return -1;
+    if (pos1 <=0 || pos1 > li->qtd)
+        return -1;
+    if (pos2 <=0 || pos2 > li->qtd)
+        return -1;
+    Lista *aux;
+
+    aux->dados[0] = li->dados[pos1-1];
+    li->dados[pos1-1] = li->dados[pos2-1];
+    li->dados[pos2-1] = aux->dados[0];
+    
+    free(aux);
+    return 0;
+}
+
 */

@@ -18,11 +18,9 @@ mat = mat2D_create(2,2);
 mat2d_increase_size(mat,3,3)
 
 // Exemplo após o aumento de tamanho
-// |2 7 0|
+// |2 7 0|      2 4 0 7 5 0 0 0 0 
 // |4 5 0|
 // |0 0 0|
-
-
 
 ²struct TMat2D
  {
@@ -30,5 +28,25 @@ mat2d_increase_size(mat,3,3)
   int ncolumns; // número de colunas
   double *data; // ponteiro para os dados da matriz
  };
+    //entreguei por entregar, tenho quase ctz que não está funcionando como deveria.
+    //me embananei para fazer o preenchimento das posições corretas;
+ TMat2D *mat2d_increase_size(TMat2D *mat, int i, int j){
+    if(mat == NULL)
+        return -1;
+    if (i<=0)
+        return -1;
+    if (j<=0)
+        return -1;
+    TMat2D *aux;
+    int y = 0;
+    int f = mat->nrows*mat->ncolumns;
+    aux = mat2D_create(i, j);
+    for(int y = 0; y < f; y++){
+        aux->data[y] = mat->data[i];
+    }
+    mat = aux;
+    free(aux);
+    return mat;
+}
 
 */

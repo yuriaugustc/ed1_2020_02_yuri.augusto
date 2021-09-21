@@ -46,6 +46,25 @@ int mat2D_set_value(TMat2D *mat, int i, int j, double val){
         return -1;
 }
 
+TMat2D *mat2d_increase_size(TMat2D *mat, int i, int j){
+    if(mat == NULL)
+        return -1;
+    if (i<=0)
+        return -1;
+    if (j<=0)
+        return -1;
+    TMat2D *aux;
+    int y = 0;
+    int f = mat->nrows*mat->ncolumns;
+    aux = mat2D_create(i, j);
+    for(int y = 0; y < f; y++){
+        aux->data[y] = mat->data[i];
+    }
+    mat = aux;
+    free(aux);
+    return mat;
+}
+
 /*  Descripition: This function return the value of requisited position;
  *  Input: (Matrix's pointer selected to inserction, line, column, (double) the value to overwrite);
  *  Output: the value of requisited position;

@@ -31,6 +31,49 @@ int insere_lista_final(Lista *li, struct aluno al)
     return 0;
 }
 
+int troca_pos_lista(Lista *li, int pos1, int pos2){
+    Lista *aux;
+    if(li == NULL)
+        return -1;
+    if(li->qtd == MAX)
+        return -1;
+    if (pos1 <=0 || pos1 > li->qtd)
+        return -1;
+    if (pos2 <=0 || pos2 > li->qtd)
+        return -1;
+    aux->dados[0] = li->dados[pos1-1];
+    li->dados[pos1-1] = li->dados[pos2-1];
+    li->dados[pos2-1] = aux->dados[0];
+    
+    free(aux);
+    return 0;
+}
+
+int remove_intervalo_lista(Lista *li, int pos1, int pos2){
+    Lista *aux;
+    if(li == NULL)
+        return -1;
+    if (pos1 <=0 || pos1 > li->qtd)
+        return -1;
+    if (pos2 <=0 || pos2 > li->qtd)
+        return -1;
+    int a = pos2; 
+    int b = pos1;
+    for (int i = pos2-1; i >= pos1; i--){ //este for faz o controle de quantas casas serão chegadas para frente
+        for(int i = a; i >= b; i--)     //este for empurra posicao por posicao até a ultima vaga, pelo menos eu espero que faça isso;
+            li->dados[i-1] = li->dados[i];
+        a++; 
+        b++;
+        if(b == pos2) // controle para saber se o buraco foi preenchido;
+            break;
+    }
+    
+    int aux1 = pos2 - pos1;
+    li->qtd -= aux1; // redefinindo a quantidade de alunos na lista;
+    free(aux);
+    return 0;
+}
+
 int consulta_lista_pos(Lista *li, int pos, struct aluno *al)
 {
     if (li == NULL)
