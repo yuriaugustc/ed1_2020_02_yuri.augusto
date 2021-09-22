@@ -53,12 +53,12 @@ TMat2D *mat2d_increase_size(TMat2D *mat, int i, int j){
         return -1;
     if (j<=0)
         return -1;
-    TMat2D *aux;
-    int y = 0;
-    int f = mat->nrows*mat->ncolumns;
-    aux = mat2D_create(i, j);
-    for(int y = 0; y < f; y++){
-        aux->data[y] = mat->data[i];
+    TMat2D *aux = mat2D_create(i, j);
+    for(int k=0;i<mat->nrows;i++){
+        for(int f=0;j<mat->ncolumns;j++){
+            int a = getvalue(mat,k,f);  //créditos: LucasAlvesUfu;
+            setvalue(aux,k,f,a);
+        }
     }
     mat = aux;
     free(aux);
