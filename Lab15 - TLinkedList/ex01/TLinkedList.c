@@ -49,17 +49,22 @@ int list_push_back(TLinkedList *list, aluno al){
         if(node == NULL){
             return OUT_OF_MEMORY;
         }
-        node->data = al;
-        if(list->head == NULL){
-            list->head = node;
-        }
-        list_node *aux = list->head;
-        while(aux->next != NULL){
-            aux = aux->next; //incompleto, falta fazer a ultima posição apontar para a nova ultima posição
-        }
-        node->next = NULL;
+            node->data = al;
+            node->next = NULL;
+            if(list->head == NULL){
+                list->head = node;
+            }
+            list_node *aux = list->head;
+            while(aux->next != NULL){
+                aux = aux->next;
+            }
+        aux->next = node;
         return SUCCESS;
     }
+}
+
+int list_insert(TLinkedList *list, int pos, aluno al){
+
 }
 
 int list_free(TLinkedList *list){
