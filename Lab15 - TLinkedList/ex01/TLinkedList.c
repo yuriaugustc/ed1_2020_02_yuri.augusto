@@ -237,7 +237,12 @@ int list_find_mat(TLinkedList *list, int matr, aluno *al){
  *  Output: Returns the student position's value, or a error code; 
  */ 
 int list_front(TLinkedList *list, aluno *al){
-    
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        
+    }
 }
 
 /*  Descripition: Find and returns the student's content that has in last position in the list;
@@ -256,12 +261,17 @@ int list_get_pos(TLinkedList *list, aluno *al){
 
 }
 
-/*  Descripition: Print all the list on console;
+/*  Descripition: Print the pointer's content on console;
  *  Input: (The List's pointer to print);
  *  Output: The data of all position in the list; 
  */ 
 int list_print(TLinkedList *list){
-
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        printf("Registry ");
+    }
 }
 
 /*  Descripition: This function destroy/deallocate a memory allocation by your pointer;

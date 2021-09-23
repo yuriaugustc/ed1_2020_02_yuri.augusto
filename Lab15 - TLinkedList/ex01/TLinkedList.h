@@ -30,4 +30,4 @@ int list_find_mat(TLinkedList *list, int matr, aluno *al); //find a student by y
 int list_front(TLinkedList *list, aluno *al); //return the student in the list's first place;
 int list_back(TLinkedList *list, aluno *al); //return the student in the list's last place;
 int list_get_pos(TLinkedList *list, aluno *al); //given your registry, finds and returns the student's position;
-int list_print(TLinkedList *list); //print the list (unic function that allows printf);
+int list_print(TLinkedList *list); //print the passed pointer (unic function that allows printf);
