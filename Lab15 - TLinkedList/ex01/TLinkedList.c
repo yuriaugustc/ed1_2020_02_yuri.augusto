@@ -61,15 +61,15 @@ int list_push_back(TLinkedList *list, aluno al){
         if(node == NULL){
             return OUT_OF_MEMORY;
         }
-            node->data = al;
-            node->next = NULL;
-            if(list->head == NULL){
-                list->head = node;
-            }
-            list_node *aux = list->head;
-            while(aux->next != NULL){
-                aux = aux->next;
-            }
+        node->data = al;
+        node->next = NULL;
+        if(list->head == NULL){
+            list->head = node;
+        }
+        list_node *aux = list->head;
+        while(aux->next != NULL){
+            aux = aux->next;
+        }
         aux->next = node;
         return SUCCESS;
     }
@@ -80,7 +80,28 @@ int list_push_back(TLinkedList *list, aluno al){
  *  Output: A code that can means success or error (0 in success cases, any other code in fail cases); 
  */
 int list_insert(TLinkedList *list, int pos, aluno al){
-
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        list_node *node = malloc(sizeof(list_node));
+        if(node == NULL){
+            return OUT_OF_MEMORY;
+        }
+        node->data = al;
+        list_node *aux = list->head;
+        int count = 1;
+        while(count+1 != pos){ // +1 because the point must be stopped a position before the wanted position, to set back position to point to new node;
+            if(aux->next == NULL){
+                return OUT_OF_RANGE;
+            }
+            count++;
+            aux = aux->next;
+        }
+        node->next = aux->next; //set the new node to point to node that has pushed foward;
+        aux->next = node; //set the back foward to point to new node;
+        return SUCCESS;
+    }
 }
 
 /*  Descripition: Insert neatly on the list;
@@ -88,6 +109,7 @@ int list_insert(TLinkedList *list, int pos, aluno al){
  *  Output: A code that can means success or error (0 in success cases, any other code in fail cases); 
  */ 
 int list_insert_sorted(TLinkedList *list, aluno al){
+    //ordenação por matrícula;
 
 }
 
@@ -96,7 +118,18 @@ int list_insert_sorted(TLinkedList *list, aluno al){
  *  Output: A code that can means success or error (0 in success cases, any other code in fail cases); 
  */ 
 int list_size(TLinkedList *list){
-
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        list_node *aux = list->head;
+        int count = 1;
+        while(aux->next != NULL){
+            count++;
+            aux = aux->next;
+        }
+        return count;
+    }
 }
 
 /*  Descripition: Remove the student in the first position from the list;
@@ -104,7 +137,17 @@ int list_size(TLinkedList *list){
  *  Output: A code that can means success or error (0 in success cases, any other code in fail cases); 
  */ 
 int list_pop_front(TLinkedList *list){
-
+    if (list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        list_node *aux = list->head;
+        list_node *aux1 = list->head;
+        aux = aux->next;
+        list->head = aux;
+        list_free(aux1);
+        return SUCCESS;
+    }
 }
 
 /*  Descripition: Remove the student in the last position form the list;
@@ -112,7 +155,20 @@ int list_pop_front(TLinkedList *list){
  *  Output: A code that can means success or error (0 in success cases, any other code in fail cases); 
  */ 
 int list_pop_back(TLinkedList *list){
-
+    if (list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        list_node *aux = list->head; // a auxiliary pointer to scroll through the list;
+        list_node *aux1 = aux; // a auxiliary pointer to set the new last position to point to NULL;
+        while(aux->next != NULL){
+            aux1 = aux;
+            aux = aux->next;
+        }
+        aux1->next = NULL;
+        list_free(aux);
+        return SUCCESS;
+    }
 }
 
 /*  Descripition: Remove the student form the list by your registry;
@@ -136,7 +192,21 @@ int list_erase_pos(TLinkedList *list, int pos){
  *  Output: Returns the student position's value, or a error code; 
  */ 
 int list_find_pos(TLinkedList *list, int pos, aluno *al){
-
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        list_node *aux = list->head;
+        int count = 1;
+        while(count != pos){
+            if(aux->next == NULL){
+                return OUT_OF_RANGE;
+            }
+            count++;
+            aux = aux->next;
+        }
+        return count;
+    }
 }
 
 /*  Descripition: Find the student form the list by your registry;
@@ -144,7 +214,22 @@ int list_find_pos(TLinkedList *list, int pos, aluno *al){
  *  Output: Returns the student position's value, or a error code; 
  */
 int list_find_mat(TLinkedList *list, int matr, aluno *al){
-
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        list_node *aux = list->head;
+        aux->data = *al;
+        int count = 0;
+        while(aux->data.matricula != matr){
+            if(aux->next == NULL){
+                return OUT_OF_RANGE;
+            }
+            aux = aux->next;
+            count++;
+        }
+        return count;
+    }
 }
 
 /*  Descripition: Find and returns the student's content that has in first position in the list;
@@ -152,10 +237,10 @@ int list_find_mat(TLinkedList *list, int matr, aluno *al){
  *  Output: Returns the student position's value, or a error code; 
  */ 
 int list_front(TLinkedList *list, aluno *al){
-
+    
 }
 
-/*  Descripition: Returns the student's content that has in last position in the list;
+/*  Descripition: Find and returns the student's content that has in last position in the list;
  *  Input: (The List's pointer to search, a pointer to struct to access student's data);
  *  Output: Returns the student position's value, or a error code;  
  */ 
