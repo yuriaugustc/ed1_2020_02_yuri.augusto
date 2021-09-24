@@ -1,5 +1,6 @@
 #include "TLinkedList.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct list_node list_node;
 
@@ -90,8 +91,8 @@ int list_insert(TLinkedList *list, int pos, aluno al){
         }
         node->data = al;
         list_node *aux = list->head;
-        int count = 1;
-        while(count+1 != pos){ // +1 because the point must be stopped a position before the wanted position, to set back position to point to new node;
+        int count = 1;               // (position starts in 1);
+        while(count+1 != pos){       // +1 because the point must be stopped a position before the wanted position, to set back position to point to new node;
             if(aux->next == NULL){
                 return OUT_OF_RANGE;
             }
@@ -110,7 +111,6 @@ int list_insert(TLinkedList *list, int pos, aluno al){
  */ 
 int list_insert_sorted(TLinkedList *list, aluno al){
     //ordenação por matrícula;
-
 }
 
 /*  Descripition: Calculate the list's size;
@@ -123,7 +123,7 @@ int list_size(TLinkedList *list){
     }
     else{
         list_node *aux = list->head;
-        int count = 1;
+        int count = 1;                  // (position starts in 1);
         while(aux->next != NULL){
             count++;
             aux = aux->next;
@@ -141,9 +141,9 @@ int list_pop_front(TLinkedList *list){
         return INVALID_NULL_POINTER;
     }
     else{
-        list_node *aux = list->head;
-        list_node *aux1 = list->head;
-        aux = aux->next;
+        list_node *aux = list->head;  // a auxiliary pointer to move foward the head list;
+        list_node *aux1 = aux->next; // a auxiliary pointer to keep the position to can deallocate at end of function;
+        aux = aux1->next;
         list->head = aux;
         list_free(aux1);
         return SUCCESS;
@@ -160,7 +160,7 @@ int list_pop_back(TLinkedList *list){
     }
     else{
         list_node *aux = list->head; // a auxiliary pointer to scroll through the list;
-        list_node *aux1 = aux; // a auxiliary pointer to set the new last position to point to NULL;
+        list_node *aux1 = aux;       // a auxiliary pointer to set the new last position to point to NULL;
         while(aux->next != NULL){
             aux1 = aux;
             aux = aux->next;
@@ -176,7 +176,23 @@ int list_pop_back(TLinkedList *list){
  *  Output: A code that can means success or error (0 in success cases, any other code in fail cases); 
  */ 
 int list_erase_data(TLinkedList *list, int matr){
-
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        list_node *aux = list->head; // a auxiliary pointer to scroll through the list;
+        list_node *aux1 = aux;       // a auxiliary pointer to push back the list, filling the hole;
+        while(aux->data.matricula != matr){
+            if(aux->next == NULL){
+                return OUT_OF_RANGE;
+            }
+            aux1 = aux;
+            aux = aux->next;
+        }
+        aux1->next = aux->next; // pointing the auxiliary to the position after the indicated position to delete; 
+        list_free(aux);
+        return SUCCESS;
+    }
 }
 
 /*  Descripition: Remove the student form the list by your position;
@@ -184,7 +200,25 @@ int list_erase_data(TLinkedList *list, int matr){
  *  Output: A code that can means success or error (0 in success cases, any other code in fail cases);  
  */ 
 int list_erase_pos(TLinkedList *list, int pos){
-
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        list_node *aux = list->head; // a auxiliary pointer to scroll through the list;
+        list_node *aux1 = aux;       // a auxiliary pointer to push back the list, filling the hole;
+        int count = 1;               // a auxiliary counter to find the wanted position (position starts in 1);
+        while(count != pos){
+            if(aux->next == NULL){
+                return OUT_OF_RANGE;
+            }
+            aux1 = aux;
+            aux = aux->next;
+            count++;
+        }
+        aux1->next = aux->next; // pointing the auxiliary to the position after the indicated position to delete; 
+        list_free(aux);
+        return SUCCESS;
+    }
 }
 
 /*  Descripition: Find the student form the list by your position;
@@ -197,7 +231,7 @@ int list_find_pos(TLinkedList *list, int pos, aluno *al){
     }
     else{
         list_node *aux = list->head;
-        int count = 1;
+        int count = 1;                  // a auxiliary counter to find the wanted position (position starts in 1);
         while(count != pos){
             if(aux->next == NULL){
                 return OUT_OF_RANGE;
@@ -205,7 +239,7 @@ int list_find_pos(TLinkedList *list, int pos, aluno *al){
             count++;
             aux = aux->next;
         }
-        return count;
+        return SUCCESS; //tenho que usar passagem por referencia; por isso ele passou um ponteiro como argumento(vide linha 263);
     }
 }
 
@@ -220,15 +254,15 @@ int list_find_mat(TLinkedList *list, int matr, aluno *al){
     else{
         list_node *aux = list->head;
         aux->data = *al;
-        int count = 0;
+        int count = 1;                  // a auxiliary counter to find the wanted position (position starts in 1);
         while(aux->data.matricula != matr){
             if(aux->next == NULL){
                 return OUT_OF_RANGE;
             }
             aux = aux->next;
-            count++;
-        }
-        return count;
+            count++;           //tenho que usar passagem por referencia; por isso ele passou um ponteiro como argumento, 
+        }                      // passagem por referencia, vc modifica o valor direto na variavel, isto é, no endereço dela, assim a modificação fica salva fora da função chamada, uma especie de return indireto;
+        return SUCCESS;        // este é um meio de burlar o retorno de uma função, que retorna apenas uma coisa, quando vc deseja retornar mais de uma;
     }
 }
 
@@ -241,7 +275,7 @@ int list_front(TLinkedList *list, aluno *al){
         return INVALID_NULL_POINTER;
     }
     else{
-        
+        //tenho que usar passagem por referencia; por isso ele passou um ponteiro como argumento(vide linha 263);
     }
 }
 
@@ -250,7 +284,7 @@ int list_front(TLinkedList *list, aluno *al){
  *  Output: Returns the student position's value, or a error code;  
  */ 
 int list_back(TLinkedList *list, aluno *al){
-
+    //tenho que usar passagem por referencia; por isso ele passou um ponteiro como argumento(vide linha 263);
 }
 
 /*  Descripition: Find and returns a student position by your registry;
@@ -258,7 +292,7 @@ int list_back(TLinkedList *list, aluno *al){
  *  Output: Returns the student position's value, or a error code; 
  */ 
 int list_get_pos(TLinkedList *list, aluno *al){
-
+    //tenho que usar passagem por referencia; por isso ele passou um ponteiro como argumento(vide linha 263);
 }
 
 /*  Descripition: Print the pointer's content on console;
@@ -270,7 +304,26 @@ int list_print(TLinkedList *list){
         return INVALID_NULL_POINTER;
     }
     else{
-        printf("Registry ");
+        list_node *aux = list->head;
+        int count = 1;
+        printf("Seeing now the printing list, wait until the end.\n");
+        Sleep(3000);
+        while(aux->next != NULL){ 
+            printf("Student the position number %d of the list: ", count);
+            printf("Registry: %d\n", aux->data.matricula);
+            printf("Name: %s", aux->data.nome);
+            printf("Grade n°1: %.2lf\n", aux->data.n1);
+            printf("Grade n°2: %.2lf\n", aux->data.n2);
+            printf("Grade n°3: %.2lf\n", aux->data.n3);
+            for(int i = 0; i < 30; i++){
+            printf("-");
+            Sleep(500);
+            }
+            printf("\n");
+            aux = aux->next;
+            count++;
+        }
+        return SUCCESS;
     }
 }
 
@@ -283,6 +336,13 @@ int list_free(TLinkedList *list){
         return INVALID_NULL_POINTER;
     }
     else{
+        list_node *aux = list->head;
+        list_node *aux1 = aux->next;
+        while(aux->next != NULL){
+            aux = aux1;
+            aux1 = aux1->next;
+            free(aux);
+        }
         free(list);
         return SUCCESS;
     }
