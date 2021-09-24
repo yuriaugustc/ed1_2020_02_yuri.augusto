@@ -1,6 +1,7 @@
 #include "TLinkedList.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 typedef struct list_node list_node;
 
@@ -110,7 +111,27 @@ int list_insert(TLinkedList *list, int pos, aluno al){
  *  Output: A code that can means success or error (0 in success cases, any other code in fail cases); 
  */ 
 int list_insert_sorted(TLinkedList *list, aluno al){
-    //ordenação por matrícula;
+    // this function only may works if the list is already ordered;
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        list_node *node = malloc(sizeof(list_node));
+        if(node == NULL){
+            return OUT_OF_MEMORY;
+        }
+        node->data = al;
+        list_node *aux = list->head;
+        while(aux->data.matricula <= node->data.matricula){
+            if(aux->next == NULL){
+                return OUT_OF_RANGE;
+            }
+            aux = aux->next;
+        }
+        node->next = aux->next; //set the new node to point to node that has pushed foward;
+        aux->next = node; //set the back foward to point to new node;
+        return SUCCESS;
+    }
 }
 
 /*  Descripition: Calculate the list's size;
@@ -166,7 +187,7 @@ int list_pop_back(TLinkedList *list){
             aux = aux->next;
         }
         aux1->next = NULL;
-        list_free(aux);
+        free(aux);
         return SUCCESS;
     }
 }
@@ -190,7 +211,7 @@ int list_erase_data(TLinkedList *list, int matr){
             aux = aux->next;
         }
         aux1->next = aux->next; // pointing the auxiliary to the position after the indicated position to delete; 
-        list_free(aux);
+        free(aux);
         return SUCCESS;
     }
 }
@@ -216,7 +237,7 @@ int list_erase_pos(TLinkedList *list, int pos){
             count++;
         }
         aux1->next = aux->next; // pointing the auxiliary to the position after the indicated position to delete; 
-        list_free(aux);
+        free(aux);
         return SUCCESS;
     }
 }
@@ -239,7 +260,12 @@ int list_find_pos(TLinkedList *list, int pos, aluno *al){
             count++;
             aux = aux->next;
         }
-        return SUCCESS; //tenho que usar passagem por referencia; por isso ele passou um ponteiro como argumento(vide linha 263);
+        al->matricula = aux->data.matricula;
+        strcpy(al->nome, aux->data.nome);
+        al->n1 = aux->data.n1;
+        al->n2 = aux->data.n2;
+        al->n3 = aux->data.n3;
+        return SUCCESS; //tenho que usar passagem por referencia; por isso ele passou um ponteiro como argumento(vide linha 290);
     }
 }
 
@@ -254,15 +280,18 @@ int list_find_mat(TLinkedList *list, int matr, aluno *al){
     else{
         list_node *aux = list->head;
         aux->data = *al;
-        int count = 1;                  // a auxiliary counter to find the wanted position (position starts in 1);
         while(aux->data.matricula != matr){
             if(aux->next == NULL){
                 return OUT_OF_RANGE;
             }
-            aux = aux->next;
-            count++;           //tenho que usar passagem por referencia; por isso ele passou um ponteiro como argumento, 
-        }                      // passagem por referencia, vc modifica o valor direto na variavel, isto é, no endereço dela, assim a modificação fica salva fora da função chamada, uma especie de return indireto;
-        return SUCCESS;        // este é um meio de burlar o retorno de uma função, que retorna apenas uma coisa, quando vc deseja retornar mais de uma;
+            aux = aux->next;                   //tenho que usar passagem por referencia; por isso ele passou um ponteiro como argumento,                               
+        }                                      // passagem por referencia, vc modifica o valor direto na variavel, isto é, no endereço dela, assim a modificação fica salva fora da função chamada, uma especie de return indireto;
+        al->matricula = aux->data.matricula;   // este é um meio de burlar o retorno de uma função, que retorna apenas uma coisa, quando vc deseja retornar mais de um valor;
+        strcpy(al->nome, aux->data.nome);
+        al->n1 = aux->data.n1;
+        al->n2 = aux->data.n2;
+        al->n3 = aux->data.n3;
+        return SUCCESS;        
     }
 }
 
@@ -275,7 +304,13 @@ int list_front(TLinkedList *list, aluno *al){
         return INVALID_NULL_POINTER;
     }
     else{
-        //tenho que usar passagem por referencia; por isso ele passou um ponteiro como argumento(vide linha 263);
+        list_node *aux = list->head->next;
+        al->matricula = aux->data.matricula;
+        strcpy(al->nome, aux->data.nome);
+        al->n1 = aux->data.n1;
+        al->n2 = aux->data.n2;
+        al->n3 = aux->data.n3;
+        return SUCCESS;
     }
 }
 
@@ -284,7 +319,21 @@ int list_front(TLinkedList *list, aluno *al){
  *  Output: Returns the student position's value, or a error code;  
  */ 
 int list_back(TLinkedList *list, aluno *al){
-    //tenho que usar passagem por referencia; por isso ele passou um ponteiro como argumento(vide linha 263);
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        list_node *aux = list->head;
+        while(aux->next != NULL){
+            aux = aux->next;
+        }
+        al->matricula = aux->data.matricula;
+        strcpy(al->nome, aux->data.nome);
+        al->n1 = aux->data.n1;
+        al->n2 = aux->data.n2;
+        al->n3 = aux->data.n3;
+        return SUCCESS;
+    }
 }
 
 /*  Descripition: Find and returns a student position by your registry;
@@ -292,10 +341,25 @@ int list_back(TLinkedList *list, aluno *al){
  *  Output: Returns the student position's value, or a error code; 
  */ 
 int list_get_pos(TLinkedList *list, aluno *al){
-    //tenho que usar passagem por referencia; por isso ele passou um ponteiro como argumento(vide linha 263);
-}
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        list_node *aux = list->head;
+        aux->data = *al;
+        int count = 1;                  // a auxiliary counter to find the wanted position (position starts in 1);
+        while(aux->data.matricula != al->matricula){
+            if(aux->next == NULL){
+                return OUT_OF_RANGE;
+            }
+            aux = aux->next;
+            count++;                           //tenho que usar passagem por referencia; por isso ele passou um ponteiro como argumento, 
+        }
+    return count;
+    }
+}  
 
-/*  Descripition: Print the pointer's content on console;
+/*  Descripition: Print all the list on console;
  *  Input: (The List's pointer to print);
  *  Output: The data of all position in the list; 
  */ 
