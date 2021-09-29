@@ -14,7 +14,6 @@ struct aluno{
 
 typedef struct TLinkedList TLinkedList;
 
-<<<<<<< HEAD
 TLinkedList *list_create(); //creates the list;
 int list_free(TLinkedList *list); //destroy/deallocate the list;
 int list_push_front(TLinkedList *list, aluno al); //insert on the first position
@@ -32,14 +31,3 @@ int list_front(TLinkedList *list, aluno *al); //return the student in the list's
 int list_back(TLinkedList *list, aluno *al); //return the student in the list's last place;
 int list_get_pos(TLinkedList *list, aluno *al); //given your registry, finds and returns the student's position;
 int list_print(TLinkedList *list); //print the list (unic function that allows printf);
-=======
-TLinkedList *list_create();
-int list_free(TLinkedList *list);
-int list_push_front(TLinkedList *list, struct aluno al);
-int list_push_back(TLinkedList *list, struct aluno al);
-int list_insert_sorted(TLinkedList *list, struct aluno al);
-
-
-int list_print(TLinkedList *list);
-
->>>>>>> 1c960833a81e88484467e040c2dee1794073dfa3
