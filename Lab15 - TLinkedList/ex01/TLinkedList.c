@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "TLinkedList.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -49,12 +50,10 @@ int list_push_front(TLinkedList *list, aluno al)
     }
 }
 
-/*  Descripition: Insert a student on list's last position;
- *  Input: (The List's pointer to do the inserction, the struct with student's data);
- *  Output: A code that can means success or error (0 in success cases, any other code in fail cases);
- */
-int list_push_back(TLinkedList *list, aluno al){
-    if(list == NULL){
+int list_push_back(TLinkedList *list, struct aluno al)
+{
+    if (list == NULL)
+    {
         return INVALID_NULL_POINTER;
     }
     else{
