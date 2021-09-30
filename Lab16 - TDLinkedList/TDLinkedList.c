@@ -107,14 +107,14 @@ int list_insert(TDLinkedList *list, int pos, aluno al){
     if(pos <= 0 || pos > list->size){
         return OUT_OF_RANGE;
     }
-    DLNode *node = malloc(sizeof(DLNode));
-    DLNode *aux = list->begin->next;
     if(pos == 1){
         list_push_front(list, al);
     }
     if(pos == list->size){
         list_push_back(list, al);
     }
+    DLNode *node = malloc(sizeof(DLNode));
+    DLNode *aux = list->begin->next;
     int count = 1;
     while(count != pos){
         aux = aux->next;
@@ -139,5 +139,55 @@ int list_size(TDLinkedList *list, int *pos){
 }
 
 int list_pop_front(TDLinkedList *list){
-    
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        DLNode *aux = list->begin->next;
+        aux->prev = NULL;
+        list->begin = aux;
+        (list->size)++;
+        return SUCCESS;
+    }
+}
+
+int list_pop_back(TDLinkedList *list){
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        DLNode *aux = list->end->next;
+        aux->next = NULL;
+        list->end = aux;
+        (list->size)--;
+    }
+}
+
+int list_erase(TDLinkedList *list, int pos){
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    if(pos <= 0 || pos > list->size){
+        return OUT_OF_RANGE;
+    }
+    if(pos == 1){
+        list_pop_front(list);
+    }
+    if(pos == list->size){
+        list_pop_back(list);
+    }
+    DLNode *aux = list->begin->next;
+    DLNode *aux1 = aux;
+    DLNode *aux2;
+    int count = 1;
+    while(count != pos){
+        aux1 = aux;
+        aux = aux->next;
+        count++;
+    }
+    aux1->next = aux->next;
+    aux2 = aux->next;
+    aux2->prev = aux1;
+    free(aux);
+    return SUCCESS;
 }
