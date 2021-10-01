@@ -219,7 +219,7 @@ int list_erase_data(TLinkedList *list, int matr){
     }
 }
 
-/*  Descripition: Remove the student form the list by your position;
+/*  Descripition: Remove the student from the list by your position;
  *  Input: (The List's pointer to removal, your position in the list);
  *  Output: A code that can means success or error (0 in success cases, any other code in fail cases);  
  */ 

@@ -32,7 +32,10 @@ TDLinkedList *list_create(){
     return list;
 }
 
-
+/*  Descripition: This function destroy/deallocate a memory allocation by your pointer;
+ *  Input: (The List's pointer to deallocate);
+ *  Output: A code that can means success or error (0 in success cases, any other code in fail cases); 
+ */
 int list_free(TDLinkedList *list){
     if(list == NULL){
         return INVALID_NULL_POINTER;
@@ -100,6 +103,10 @@ int list_push_back(TDLinkedList *list, aluno al){
     }
 }
 
+/*  Descripition: Insert a student in a indicated position;
+ *  Input: (The List's pointer to do the inserction, a position to do the inserction, the struct with student's data);
+ *  Output: A code that can means success or error (0 in success cases, any other code in fail cases); 
+ */
 int list_insert(TDLinkedList *list, int pos, aluno al){
     if(list == NULL){
         return INVALID_NULL_POINTER;
@@ -130,6 +137,10 @@ int list_insert(TDLinkedList *list, int pos, aluno al){
     return SUCCESS;
 }
 
+/*  Descripition: Calculate the list's size;
+ *  Input: (The List's pointer to calculate the size);
+ *  Output: A code that can means success or error (0 in success cases, any other code in fail cases); 
+ */
 int list_size(TDLinkedList *list, int *pos){
     if(list == NULL){
         return INVALID_NULL_POINTER;
@@ -138,6 +149,10 @@ int list_size(TDLinkedList *list, int *pos){
     return SUCCESS;
 }
 
+/*  Descripition: Remove the student in the first position from the list;
+ *  Input: (The List's pointer to removal);
+ *  Output: A code that can means success or error (0 in success cases, any other code in fail cases); 
+ */
 int list_pop_front(TDLinkedList *list){
     if(list == NULL){
         return INVALID_NULL_POINTER;
@@ -151,6 +166,10 @@ int list_pop_front(TDLinkedList *list){
     }
 }
 
+/*  Descripition: Remove the student in the last position form the list;
+ *  Input: (The List's pointer to removal);
+ *  Output: A code that can means success or error (0 in success cases, any other code in fail cases); 
+ */
 int list_pop_back(TDLinkedList *list){
     if(list == NULL){
         return INVALID_NULL_POINTER;
@@ -163,6 +182,10 @@ int list_pop_back(TDLinkedList *list){
     }
 }
 
+/*  Descripition: Remove the student from the list by your position;
+ *  Input: (The List's pointer to removal, your position in the list);
+ *  Output: A code that can means success or error (0 in success cases, any other code in fail cases);  
+ */ 
 int list_erase(TDLinkedList *list, int pos){
     if(list == NULL){
         return INVALID_NULL_POINTER;
@@ -192,6 +215,10 @@ int list_erase(TDLinkedList *list, int pos){
     return SUCCESS;
 }
 
+/*  Descripition: Find the student from the list by your position;
+ *  Input: (The List's pointer to removal, your position in the list);
+ *  Output: A code that can means success or error (0 in success cases, any other code in fail cases);  
+ */ 
 int list_find_pos(TDLinkedList *list, int pos, aluno *al){
     if(list == NULL){
         return INVALID_NULL_POINTER;
@@ -209,6 +236,10 @@ int list_find_pos(TDLinkedList *list, int pos, aluno *al){
     return SUCCESS;
 }
 
+/*  Descripition: Find the student form the list by your registry;
+ *  Input: (The List's pointer to search, your registry, a pointer to struct to access student's data);
+ *  Output: Returns the student position's value, or a error code; 
+ */
 int list_find_mat(TDLinkedList *list, int nmat, aluno *al){
     if(list == NULL){
         return INVALID_NULL_POINTER;
