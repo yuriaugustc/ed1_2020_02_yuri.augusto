@@ -191,3 +191,37 @@ int list_erase(TDLinkedList *list, int pos){
     free(aux);
     return SUCCESS;
 }
+
+int list_find_pos(TDLinkedList *list, int pos, aluno *al){
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    if(pos <= 0 || pos > list->size){
+        return OUT_OF_RANGE;
+    }
+    DLNode *aux = list->begin->next;
+    int count = 1;
+    while(count != pos){
+        aux = aux->next;
+        count++;
+    }
+    *al = aux->data;
+    return SUCCESS;
+}
+
+int list_find_mat(TDLinkedList *list, int nmat, aluno *al){
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        DLNode *aux = list->begin;
+        while(aux->data.matricula != nmat){
+            if(aux->next == NULL){
+                return OUT_OF_RANGE;
+            }
+            aux = aux->next;
+        }
+        *al = aux->data;
+        return SUCCESS;
+    }
+}

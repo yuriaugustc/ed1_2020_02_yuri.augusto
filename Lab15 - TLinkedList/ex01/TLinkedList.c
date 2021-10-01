@@ -282,7 +282,6 @@ int list_find_mat(TLinkedList *list, int matr, aluno *al){
     }
     else{
         list_node *aux = list->head;
-        aux->data = *al;
         while(aux->data.matricula != matr){
             if(aux->next == NULL){
                 return OUT_OF_RANGE;
