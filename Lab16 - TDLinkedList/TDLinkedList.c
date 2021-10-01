@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <windows.h>
 #include "TDLinkedList.h"
 
 typedef struct DLNode DLNode;
@@ -41,7 +42,7 @@ int list_free(TDLinkedList *list){
         return INVALID_NULL_POINTER;
     }
     else{
-        DLNode *node = list->begin->next;
+        DLNode *node = list->begin;
         DLNode *aux = node;
         while(node->next != NULL){
             aux = node;
@@ -121,7 +122,7 @@ int list_insert(TDLinkedList *list, int pos, aluno al){
         list_push_back(list, al);
     }
     DLNode *node = malloc(sizeof(DLNode));
-    DLNode *aux = list->begin->next;
+    DLNode *aux = list->begin;
     int count = 1;
     while(count != pos){
         aux = aux->next;
@@ -145,7 +146,7 @@ int list_size(TDLinkedList *list, int *pos){
     if(list == NULL){
         return INVALID_NULL_POINTER;
     }
-    pos = list->size;
+    *pos = list->size;
     return SUCCESS;
 }
 
@@ -199,7 +200,7 @@ int list_erase(TDLinkedList *list, int pos){
     if(pos == list->size){
         list_pop_back(list);
     }
-    DLNode *aux = list->begin->next;
+    DLNode *aux = list->begin;
     DLNode *aux1 = aux;
     DLNode *aux2;
     int count = 1;
@@ -226,7 +227,7 @@ int list_find_pos(TDLinkedList *list, int pos, aluno *al){
     if(pos <= 0 || pos > list->size){
         return OUT_OF_RANGE;
     }
-    DLNode *aux = list->begin->next;
+    DLNode *aux = list->begin;
     int count = 1;
     while(count != pos){
         aux = aux->next;
@@ -253,6 +254,117 @@ int list_find_mat(TDLinkedList *list, int nmat, aluno *al){
             aux = aux->next;
         }
         *al = aux->data;
+        return SUCCESS;
+    }
+}
+
+/*  Descripition: Find and returns the student's content that has in first position in the list;
+ *  Input: (The List's pointer to search, a pointer to struct to access student's data);
+ *  Output: Returns the student position's value, or a error code; 
+ */
+int list_front(TDLinkedList *list, aluno *al){
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        *al = list->begin->data;
+        return SUCCESS;
+    }
+}
+
+/*  Descripition: Find and returns the student's content that has in last position in the list;
+ *  Input: (The List's pointer to search, a pointer to struct to access student's data);
+ *  Output: Returns the student position's value, or a error code;  
+ */
+int list_back(TDLinkedList *list, aluno *al){
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        *al = list->end->data;
+        return SUCCESS;
+    }
+}
+
+/*  Descripition: Find and returns a student position by your registry;
+ *  Input: (The List's pointer to search, the student's registry, a pointer to return the value by reference);
+ *  Output: Returns the student position's value, or a error code; 
+ */
+int list_get_pos(TDLinkedList *list, int nmat, int *pos){
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        DLNode *aux = list->begin->next;
+        int count = 1;
+        while(aux->data.matricula != nmat){
+            if(aux->next == NULL){
+                return OUT_OF_RANGE;
+            }
+            aux = aux->next;
+            count++;
+        }
+        *pos = count;
+        return SUCCESS;
+    }
+}
+
+/*  Descripition: Print all the list on console, from first until last;
+ *  Input: (The List's pointer to print);
+ *  Output: The data of all position in the list; 
+ */ 
+int list_print_forward(TDLinkedList *list){
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        DLNode *aux = list->end;
+        int count = list->size;
+        while(aux != NULL){ 
+            printf("Student the position number %d of the list: ", count);
+            printf("Registry: %d\n", aux->data.matricula);
+            printf("Name: %s", aux->data.nome);
+            printf("Grade n°1: %.2lf\n", aux->data.n1);
+            printf("Grade n°2: %.2lf\n", aux->data.n2);
+            printf("Grade n°3: %.2lf\n", aux->data.n3);
+            for(int i = 0; i < 30; i++){
+            printf("-");
+            Sleep(500);
+            }
+            printf("\n");
+            aux = aux->prev;
+            count--;
+        }
+        return SUCCESS;
+    }
+}
+
+/*  Descripition: Print all the list on console, from last until first;
+ *  Input: (The List's pointer to print);
+ *  Output: The data of all position in the list; 
+ */
+int list_print_reverse(TDLinkedList *list){
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        DLNode *aux = list->end;
+        int count = 1;
+        while(aux != NULL){ 
+            printf("Student the position number %d of the list: ", count);
+            printf("Registry: %d\n", aux->data.matricula);
+            printf("Name: %s", aux->data.nome);
+            printf("Grade n°1: %.2lf\n", aux->data.n1);
+            printf("Grade n°2: %.2lf\n", aux->data.n2);
+            printf("Grade n°3: %.2lf\n", aux->data.n3);
+            for(int i = 0; i < 30; i++){
+            printf("-");
+            Sleep(500);
+            }
+            printf("\n");
+            aux = aux->next;
+            count++;
+        }
         return SUCCESS;
     }
 }
