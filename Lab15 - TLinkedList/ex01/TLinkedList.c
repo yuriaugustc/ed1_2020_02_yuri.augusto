@@ -374,7 +374,7 @@ int list_print(TLinkedList *list){
         int count = 1;
         printf("Seeing now the printing list, wait until the end.\n");
         Sleep(3000);
-        while(aux->next != NULL){ 
+        while(aux != NULL){ 
             printf("Student the position number %d of the list: ", count);
             printf("Registry: %d\n", aux->data.matricula);
             printf("Name: %s", aux->data.nome);
