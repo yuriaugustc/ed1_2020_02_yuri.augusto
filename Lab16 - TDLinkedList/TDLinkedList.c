@@ -3,6 +3,7 @@
 #include <string.h>
 #include <windows.h>
 #include "TDLinkedList.h"
+#include "aluno.h"
 
 typedef struct DLNode DLNode;
 
