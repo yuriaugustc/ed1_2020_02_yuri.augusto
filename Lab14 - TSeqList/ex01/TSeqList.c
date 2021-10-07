@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "TSeqList.h" //inclui os Protótipos
 
+
 //Definição do tipo lista
 struct lista
 {

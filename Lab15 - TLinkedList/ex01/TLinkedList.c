@@ -1,7 +1,8 @@
-#include "TLinkedList.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "TLinkedList.h"
 
 typedef struct list_node list_node;
 
@@ -53,8 +54,10 @@ int list_push_front(TLinkedList *list, aluno al)
  *  Input: (The List's pointer to do the inserction, the struct with student's data);
  *  Output: A code that can means success or error (0 in success cases, any other code in fail cases);
  */
-int list_push_back(TLinkedList *list, aluno al){
-    if(list == NULL){
+int list_push_back(TLinkedList *list, struct aluno al)
+{
+    if (list == NULL)
+    {
         return INVALID_NULL_POINTER;
     }
     else{
@@ -216,7 +219,7 @@ int list_erase_data(TLinkedList *list, int matr){
     }
 }
 
-/*  Descripition: Remove the student form the list by your position;
+/*  Descripition: Remove the student from the list by your position;
  *  Input: (The List's pointer to removal, your position in the list);
  *  Output: A code that can means success or error (0 in success cases, any other code in fail cases);  
  */ 
@@ -279,7 +282,6 @@ int list_find_mat(TLinkedList *list, int matr, aluno *al){
     }
     else{
         list_node *aux = list->head;
-        aux->data = *al;
         while(aux->data.matricula != matr){
             if(aux->next == NULL){
                 return OUT_OF_RANGE;
@@ -372,7 +374,7 @@ int list_print(TLinkedList *list){
         int count = 1;
         printf("Seeing now the printing list, wait until the end.\n");
         Sleep(3000);
-        while(aux->next != NULL){ 
+        while(aux != NULL){ 
             printf("Student the position number %d of the list: ", count);
             printf("Registry: %d\n", aux->data.matricula);
             printf("Name: %s", aux->data.nome);
