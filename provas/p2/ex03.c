@@ -28,6 +28,8 @@ mat2d_increase_size(mat,3,3)
   int ncolumns; // número de colunas
   double *data; // ponteiro para os dados da matriz
  };
+
+*/
     //entreguei por entregar, tenho quase ctz que não está funcionando como deveria.
     //me embananei para fazer o preenchimento das posições corretas;
  TMat2D *mat2d_increase_size(TMat2D *mat, int i, int j){
@@ -37,6 +39,10 @@ mat2d_increase_size(mat,3,3)
         return -1;
     if (j<=0)
         return -1;
+ 
+ // check:<<<erro: e3.1: não fez os testes comparando o tamanho novo com o antiga para saber se o tamanho é maior OU fez o teste considerando somente o total de elementos  OU fez erros no teste>>>>
+ // check:<<<erro: e3.3: deve-se lembrar da representação linear da matriz na memória. Isso implica em reposicionar alguns elementos no vetor linear que estavam na matriz original>>>>
+ // check:<<<erro: e3.4: Faltou zerar os novos elementos>>>>
     TMat2D *aux;
     int y = 0;
     int f = mat->nrows*mat->ncolumns;
@@ -44,9 +50,8 @@ mat2d_increase_size(mat,3,3)
     for(int y = 0; y < f; y++){
         aux->data[y] = mat->data[i];
     }
-    mat = aux;
+    mat = aux;// check:<<<erro: cópia de duas variáveis locais>>>>
     free(aux);
     return mat;
 }
 
-*/

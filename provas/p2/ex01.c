@@ -19,7 +19,7 @@ troca_pos_lista( lista, 4, 10)
     int qtd;
     struct aluno dados[MAX];
  };
-
+*/
 int troca_pos_lista(Lista *li, int pos1, int pos2){
     if(li == NULL)
         return -1;
@@ -27,7 +27,7 @@ int troca_pos_lista(Lista *li, int pos1, int pos2){
         return -1;
     if (pos2 <=0 || pos2 > li->qtd)
         return -1;
-    Lista *aux;
+    Lista *aux;// check:<<<erro: vc não criou a lista. Era para ser um aluno temporario, nao uma lista>>>>
 
     aux->dados[0] = li->dados[pos1-1];
     li->dados[pos1-1] = li->dados[pos2-1];
@@ -37,4 +37,3 @@ int troca_pos_lista(Lista *li, int pos1, int pos2){
     return 0;
 }
 
-*/

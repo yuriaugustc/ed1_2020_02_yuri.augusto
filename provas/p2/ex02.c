@@ -10,7 +10,7 @@ TAD, que diz que a posição 1 corresponde ao primeiro elemento da lista.
 
 Exemplo de chamada da função:
 remove_intervalo_lista(lista,5,9)
-
+*/
 int remove_intervalo_lista(Lista *li, int pos1, int pos2){
     if(li == NULL)
         return -1;
@@ -18,23 +18,23 @@ int remove_intervalo_lista(Lista *li, int pos1, int pos2){
         return -1;
     if (pos2 <=0 || pos2 > li->qtd)
         return -1;
+  // check:<<<erro: e2.2: erro em testes de tamanho da lista com as posições de remoção (posições aceitas >=1 <=qtd/ teste de lista null // start>end>>>>
     Lista *aux;
     int a = pos2; 
     int b = pos1;
-    
+    // check:<<<erro: e2.3: Um só laço deve ser usado O(n). Da forma como está envolve deslocar os mesmos elementos várias vezes O(N²)>>>>
     for (int i = pos2-1; i >= pos1; i--){ //este for faz o controle de quantas casas serão chegadas para frente
         for(int i = a; i >= b; i--)     //este for empurra posicao por posicao até a ultima vaga, pelo menos eu espero que faça isso;
             li->dados[i-1] = li->dados[i];
-        a++; 
+        a++; // check:<<<erro:?? >>>>
         b++;
         //if(b == pos2) // controle para saber se o buraco foi preenchido;
         //    break;    // acabei chegando a conclusao de que o primeiro for ja vai fazer esse controle, gostaria de saber se estou certo ou não quando corrigir;
     }
     
     int aux1 = pos2 - pos1;
-    li->qtd -= aux1; // redefinindo a quantidade de alunos na lista;
+    li->qtd -= aux1; // redefinindo a quantidade de alunos na lista;// check:<<<erro: aux+1>>>>
     free(aux);
     return 0;
 }
 
-*/
