@@ -3,7 +3,6 @@
 #include <string.h>
 #include <windows.h>
 #include "TDLinkedList.h"
-#include "aluno.h"
 
 typedef struct DLNode DLNode;
 
@@ -181,6 +180,32 @@ int list_pop_back(TDLinkedList *list){
         aux->next = NULL;
         list->end = aux;
         (list->size)--;
+    }
+}
+
+int list_erase_max_nota_n1(TDLinkedList *list){
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        DLNode *aux = list->begin;
+    
+        int max = 0;
+        while(aux->next != NULL){
+            if(aux->data.n1 > max){
+                max = aux->data.n1;
+            }
+            aux = aux->next;
+        }
+        int count = 1;
+        aux = list->begin;
+        while(aux->next != NULL){
+            if(aux->data.n1 == max){
+                aux = aux->next;
+                list_erase(list, count);
+            }
+            count++;
+        }
     }
 }
 

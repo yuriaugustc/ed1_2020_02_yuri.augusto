@@ -16,7 +16,7 @@ pos – lista a ser concatenada no final (depois de /in/)
 
 Retorno da função: 0 para sucesso; -1 para qualquer tipo de erro
 Na implementação do list_concat3, *nenhum elemento é copiado ou movido*,
-somente os ponteiros internos das três listas são rearranjados.
+somente os ponteiros internos das *três listas* são rearranjados.
 Após a concatenação, as listas continuarão existindo, no entanto,
 as listas in e pos ficarão sem elementos (vazia). 
 O resultado final da concatenação ficará na lista /pre/.  
@@ -26,5 +26,24 @@ pre <-> in <-> pos
 */
 
 int list_concat3(TDLinkedList *pre, TDLinkedList *in, TDLinkedList *pos){
+      if(pre == NULL)
+            return -1; //codigo de erro diferente só para saber qual ponteiro deu NULL;
+      else if(in == NULL)
+            return -2; //codigo de erro diferente só para saber qual ponteiro deu NULL;
+      else if(pos == NULL)
+            return -3; //codigo de erro diferente só para saber qual ponteiro deu NULL;
+      else{
+            DLNode *aux = pre->end;
+            DLNone *aux1 = in->end;
+            
+            aux->next = in->begin;
+            in->begin = NULL;
+            in->end = NULL;
+            aux1->next = pos->begin;  // quase cai na bobeira de rodar um for e setar posição por posicao na ultima posicao de "pre" kkk;
+            pos->begin = NULL;        // se tiver certo como eu penso que está, o enunciado que faz parecer dificil kkk;
+            pre->end = pos->end;
+            pos->end = NULL;
 
+            return SUCCESS;
+      }
 }

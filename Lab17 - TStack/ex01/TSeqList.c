@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "TSeqList1.h"
+#include "TSeqList.h"
 
 //Definição do tipo lista
 struct lista
@@ -51,7 +51,7 @@ int insert_list_back(TSeqList *li, struct aluno al)
     if (li->qtd == li->max) //lista cheia
         realoca_lista(li);
     li->dados[li->qtd] = al;
-    li->qtd++;
+    (li->qtd)++;
     return 0;
 }
 
@@ -66,7 +66,27 @@ int find_list_pos(TSeqList *li, int pos, struct aluno *al)
 }
 
 int find_list_mat(TSeqList *li, int mat, struct aluno *al){
-    
+    int i = 0;
+    if(li == NULL)
+        return -1;
+    for(i = 0; i < li->qtd; i++){
+        if(li->dados->matricula == mat){
+            break;
+        }
+    }
+    *al = li->dados[i];
+    return 0;
+}
+
+int insert_list_back(TSeqList* li, struct aluno al){
+    if(li == NULL)
+        return -1;
+    if (li->qtd == li->max) //lista cheia
+        realloc_list(li);
+
+    li->dados[li->qtd] = al;
+    (li->qtd)++;
+    return 0;
 }
 
 int insert_list_front(TSeqList *li, struct aluno al)
@@ -82,7 +102,18 @@ int insert_list_front(TSeqList *li, struct aluno al)
     }
     // primeira posição disponivel
     li->dados[0] = al;
-    li->qtd++;
+    (li->qtd)++;
+    return 0;
+}
+
+int erase_list_back(TSeqList* li){
+    if(li == NULL)
+        return -1;
+    int aux = (li->qtd)-1;
+    free(&li->dados[aux]);
+    
+    (li->qtd)--;
+
     return 0;
 }
 
