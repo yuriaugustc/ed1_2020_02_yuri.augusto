@@ -23,9 +23,13 @@ TStack *stack_create(){
     return st;
 }
 
-int stack_free(TStack *st)
-{
-
+int stack_free(TStack *st){
+    if(st == NULL){
+        return INVALID_NULL_POINTER;
+    }else{
+        free_list(st);
+        return SUCCESS;
+    }
 }
 
 int stack_push(TStack *st, struct aluno al)
@@ -37,14 +41,21 @@ int stack_push(TStack *st, struct aluno al)
 
 }
 
-int stack_pop(TStack *st)
-{
-
+int stack_pop(TStack *st){
+    if(st == NULL){
+        return INVALID_NULL_POINTER;
+    }else{
+        return erase_list_back(st);
+    }
 }
 
 int stack_top(TStack *st, struct aluno *al)
 {
-
+    if(st == NULL){
+        return INVALID_NULL_POINTER;
+    }else{
+        return find_list_pos(st, st->list, al);
+    }
 }
 
 int stack_empty(TStack *st)

@@ -43,6 +43,9 @@ int list_concat3(TDLinkedList *pre, TDLinkedList *in, TDLinkedList *pos){
             pos->begin = NULL;        // se tiver certo como eu penso que está, o enunciado que faz parecer dificil kkk;
             pre->end = pos->end;
             pos->end = NULL;
+            pre->size += in->size + pos->size;  //
+            in->size = 0;                       // esqueci de fazer essas manipulações na prova;
+            pos->size = 0;                      //
 
             return SUCCESS;
       }

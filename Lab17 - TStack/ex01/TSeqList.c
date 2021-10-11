@@ -78,6 +78,14 @@ int find_list_mat(TSeqList *li, int mat, struct aluno *al){
     return 0;
 }
 
+int list_back(TSeqList *li, struct aluno *al){
+    if(li == NULL){
+        return -1;
+    }else{
+        *al = li->dados[li->qtd-1];
+    }
+}
+
 int insert_list_back(TSeqList* li, struct aluno al){
     if(li == NULL)
         return -1;
