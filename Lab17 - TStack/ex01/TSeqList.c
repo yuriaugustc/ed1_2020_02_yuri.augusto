@@ -130,7 +130,7 @@ int print_list(TSeqList *li)
     if (li == NULL)
         return -1;
 
-    for (int i = 0; i < li->qtd; i++)
+    for (int i = li->qtd; i >= 0; i--)
     {
         printf("\nMatricula: %d\n", li->dados[i].matricula);
         printf("\nNome: %s\n", li->dados[i].nome);
@@ -138,6 +138,30 @@ int print_list(TSeqList *li)
     }
     
     return 0;
+}
+
+int list_full(TSeqList *li){
+    if(li == NULL){
+        return INVALID_NULL_POINTER;
+    }else{
+        if(li->qtd == li->max){
+            return OUT_OF_MEMORY;
+        }else{
+            return SUCCESS;
+        }
+    }
+}
+
+int list_full(TSeqList *li){
+    if(li == NULL){
+        return INVALID_NULL_POINTER;
+    }else{
+        if(li->qtd == 0){
+            return EMPTY_LIST;
+        }else{
+            return SUCCESS;
+        }
+    }
 }
 
 void free_list(TSeqList *li)

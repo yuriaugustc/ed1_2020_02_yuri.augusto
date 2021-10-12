@@ -9,7 +9,6 @@ struct TStack{
     TSeqList *list;
 };
 
-
 TStack *stack_create(){
     TStack *st;
     st = malloc(sizeof(TStack));
@@ -54,22 +53,30 @@ int stack_top(TStack *st, struct aluno *al)
     if(st == NULL){
         return INVALID_NULL_POINTER;
     }else{
-        return find_list_pos(st, st->list, al);
+        return list_back(st, al);
     }
 }
 
-int stack_empty(TStack *st)
-{
-
+int stack_empty(TStack *st){
+    if(st == NULL){
+        return INVALID_NULL_POINTER;
+    }else{
+       return list_empty(st);
+    }
 }
 
-int stack_full(TStack *st)
-{
-
+int stack_full(TStack *st){
+    if(st == NULL){
+        return INVALID_NULL_POINTER;
+    }else{
+        return list_full(st);
+    }
 }
 
-int stack_print(TStack *st)
-{
-
+int stack_print(TStack *st){
+    if(st == NULL){
+        return INVALID_NULL_POINTER;
+    }else{
+        print_list(st);
+    }
 }
-
