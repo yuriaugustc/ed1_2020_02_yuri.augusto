@@ -1,12 +1,10 @@
 #include <stdlib.h>
 #include "TStack.h"
-#include "TSeqList.h"
-
-
+#include "TDLinkedList.h"
 
 // é possível criar a lista
 struct TStack{
-    TSeqList *list;
+    TDLinkedList *list;
 };
 
 TStack *stack_create(){
@@ -26,7 +24,7 @@ int stack_free(TStack *st){
     if(st == NULL){
         return INVALID_NULL_POINTER;
     }else{
-        free_list(st);
+        list_free(st);
         return SUCCESS;
     }
 }
@@ -44,7 +42,7 @@ int stack_pop(TStack *st){
     if(st == NULL){
         return INVALID_NULL_POINTER;
     }else{
-        return erase_list_back(st);
+        return list_pop_back(st->list);
     }
 }
 
@@ -57,19 +55,19 @@ int stack_top(TStack *st, struct aluno *al)
     }
 }
 
-int stack_empty(TStack *st){
+int stack_empty(TStack *st, int aux){
     if(st == NULL){
         return INVALID_NULL_POINTER;
     }else{
-       return list_empty(st->list);
+       return list_size(st->list, &aux);
     }
 }
 
-int stack_full(TStack *st){
+int stack_full(TStack *st, int aux){
     if(st == NULL){
         return INVALID_NULL_POINTER;
     }else{
-        return list_full(st->list);
+        return list_size(st->list, &aux);
     }
 }
 
@@ -77,6 +75,6 @@ int stack_print(TStack *st){
     if(st == NULL){
         return INVALID_NULL_POINTER;
     }else{
-        print_list(st->list);
+        list_print_reverse(st->list);
     }
 }
