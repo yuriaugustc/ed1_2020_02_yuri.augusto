@@ -7,7 +7,6 @@
 #define OUT_OF_RANGE -3
 #define ELEM_NOT_FOUND -4
 #define EMPTY_LIST -5
-#define BAD_FORMED -6
 
 typedef struct lista TSeqList;
 

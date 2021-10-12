@@ -2,8 +2,6 @@
 #include "TStack.h"
 #include "TSeqList.h"
 
-
-
 // é possível criar a lista
 struct TStack{
     TSeqList *list;
@@ -78,5 +76,24 @@ int stack_print(TStack *st){
         return INVALID_NULL_POINTER;
     }else{
         print_list(st->list);
+    }
+}
+
+int stack_verify_well_formed(TStack *st){
+    if(st == NULL){
+        return INVALID_NULL_POINTER;
+    }else{
+        char aux1, aux2;
+        for(int j = 0; j < size_list(st); j++){
+            find_list_pos(st->list, j, aux1);
+            if(aux1 == ')' || aux1 == ']'){
+                for(int i = size_list(st); i >= 0; i--){
+                    find_list_pos(st->list, i, aux2);
+                    if(aux2 != '(' || aux2 != '[')
+                        return SUCCESS;
+                }
+            }
+        }
+        return BAD_FORMED;
     }
 }
