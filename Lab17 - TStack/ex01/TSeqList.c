@@ -152,7 +152,7 @@ int list_full(TSeqList *li){
     }
 }
 
-int list_full(TSeqList *li){
+int list_empty(TSeqList *li){
     if(li == NULL){
         return INVALID_NULL_POINTER;
     }else{
