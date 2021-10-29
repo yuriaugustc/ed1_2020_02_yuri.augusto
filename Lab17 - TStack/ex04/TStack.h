@@ -9,8 +9,6 @@
 #define EMPTY_LIST -5
 #define BAD_FORMED -6
 
-#include "aluno.h"
-
 typedef struct TStack TStack;
 
 TStack *stack_create();
