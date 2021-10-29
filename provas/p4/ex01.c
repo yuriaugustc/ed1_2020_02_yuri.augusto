@@ -28,7 +28,7 @@ int concatena_vetor(int *vet1, int *vet2, int tam1, int tam2, int **vet3, int ta
         return -1;
     }
     tam3 = tam1+tam2;
-    *vet3 = malloc((tam3)*sizeof(int));
+    **vet3 = malloc((tam3)*sizeof(int));
     int i = 0;
     for(i = 0; i < tam1; i++){
         *vet3[i] = vet1[i];
