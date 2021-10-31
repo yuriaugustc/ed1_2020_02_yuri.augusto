@@ -34,6 +34,7 @@ int list_erase_max_nota_n1(TDLinkedList *list){
             if(aux->data.n1 == max){
                 aux = aux->next;
                 list_erase(list, count); // só fiquei com um pouquinho de duvida se essa funcao alteraria algo no meu "aux = aux->next", mas acho que nao, já que eu fiz essa linha antes;
+// check:<<<erro: e1.2 Não apagou corretamente. Ao usar list_erase(list,pos) tem que lembrar que a lista diminui de tamanho a cada chamada e o 'pos' não faz mais sentido>>>>
             }
             count++;
         }

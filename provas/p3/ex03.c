@@ -25,8 +25,8 @@ int main(){
     for(int i = 0; i < strlen(leitura); i++){
         stack_push(stack, leitura[i]); //
     }
-    for(int i = strlen(leitura); i >=0; i--){
-        stack_top(stack, print);
+    for(int i = strlen(leitura); i >=0; i--){// check:<<<erro: não precisa ser ordem inversa>>>>
+        stack_top(stack, print);// check:<<<erro: faltou colocar o endereçoc>>>>
         stack_pop(stack);       //tinha feito o envio antes do aviso para nao usar stack_print, acho que não fazer o TAD me salvou ein kkkkkkkkk
         printf("%c", print); //fiz dessa forma pois como não fiz ainda o TADPilha, fiquei na duvida se o "stack_print" printava de trás para frente.
     }                        //entendo que esse é o caminho mais longo para chegar ao mesmo resultado, mas esse eu tinha certeza, pelo menos nesse momento sinto certeza de que funciona kkkk;
