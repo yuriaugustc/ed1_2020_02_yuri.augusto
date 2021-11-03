@@ -27,7 +27,7 @@ typedef struct TCLNode TCLNode;
 struct TCLNode{ // TAD Circle List Node
     char data;
     TCLNode *next;
-    int call;
+    int call;// check:<<<erro: é pra guardar a informação na lista, não no nó>>>>
 };
 
 //letra (b):
@@ -44,9 +44,13 @@ int clist_find_next(TCLNode *cl, char *ch){
         }else{
             for(int i = 0; i <= cl->call; i++){
                 node = cl->next;
-                ch = node->data;
+                ch = node->data;// check:<<<erro: quando o valor de cl-all é atualizado?>>>>
             }
         }
     }
     return 0;
 }
+// check:<<<erro: faltou teste de lista vazia>>>>
+// check:<<<erro: faz percorrer a lista sendo que bastava ter um ponteiro direto para o elemento>>>>
+// check:<<<erro: fez o teste para saber se é a primeira vez que chama a função>>>>
+// check:<<<erro: atualizou corretamente o ponteiro>>>>

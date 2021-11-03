@@ -32,7 +32,7 @@ int list_concat3(TDLinkedList *pre, TDLinkedList *in, TDLinkedList *pos){
             return -2; //codigo de erro diferente só para saber qual ponteiro deu NULL;
       else if(pos == NULL)
             return -3; //codigo de erro diferente só para saber qual ponteiro deu NULL;
-      else{
+      else{// check:<<<erro: faltam testes para saber se as listas estao vazias>>>>
             DLNode *aux = pre->end;
             DLNone *aux1 = in->end;
             
@@ -45,7 +45,7 @@ int list_concat3(TDLinkedList *pre, TDLinkedList *in, TDLinkedList *pos){
             pos->end = NULL;
             pre->size += in->size + pos->size;  //
             in->size = 0;                       // esqueci de fazer essas manipulações na prova;
-            pos->size = 0;                      //
+            pos->size = 0;                      //// check:<<<erro: ok, acabei baixando essa versão mais nova e nao vou considerar esse trecho>>>>
 
             return SUCCESS;
       }

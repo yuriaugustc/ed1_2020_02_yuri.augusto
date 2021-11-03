@@ -22,19 +22,19 @@ Concatenção Vetor 1, Vetor 2
 Vetor Concatenado = [ 1, 5, 2, 10, 30]
 
 */
-
-int concatena_vetor(int *vet1, int *vet2, int tam1, int tam2, int **vet3, int *tam3){
+// check:<<<erro: tam3 deve ser passado por referência>>>>
+int concatena_vetor(int *vet1, int *vet2, int tam1, int tam2, int **vet3, int tam3){
     if(vet1 == NULL || vet2 == NULL){ 
         return -1;
     }
-    *tam3 = tam1+tam2;
-    *vet3 = malloc((*tam3)*sizeof(int));
+    tam3 = tam1+tam2;
+    **vet3 = malloc((tam3)*sizeof(int));// check:<<<erro: um só desrefernciamento>>>>
     int i = 0;
     for(i = 0; i < tam1; i++){
         vet3[i] = vet1[i];
     }
     int j = 0;
-    for(i = tam1; i < *tam3; i++){
+    for(i = tam1; i < tam3; i++){
         vet3[i] = vet2[j];
         j++;
     }
