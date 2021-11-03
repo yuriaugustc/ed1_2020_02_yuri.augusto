@@ -19,3 +19,8 @@ Expressão:
 104 <topo //o numero 104 está no topo;
 104 2 //o numero 2 está no topo;
 106 //o numero 106 está no topo;
+
+// SUB - Refazendo o exercicio
+
+// Engracado que esse foi o unico exercicio de todas as provas que eu acertei completamente.
+// fiquei ate sem saber oq fazer;

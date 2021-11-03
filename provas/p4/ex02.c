@@ -18,7 +18,7 @@ Uma fila circular utiliza o metodo de alocacao dinamica e a pura implementação
 sua "forma" é circular e seu tamanho "indefinido"(pode ser aumentado a qualquer momento sem muito esforço e 
 sem realocação de dados como no caso de um vetor estatico que por ventura tivesse seu tamanho aumentado).
 
-*/
+
 
 //letra (a):
 
@@ -54,3 +54,50 @@ int clist_find_next(TCLNode *cl, char *ch){
 // check:<<<erro: faz percorrer a lista sendo que bastava ter um ponteiro direto para o elemento>>>>
 // check:<<<erro: fez o teste para saber se é a primeira vez que chama a função>>>>
 // check:<<<erro: atualizou corretamente o ponteiro>>>>
+
+*/
+
+// SUB - Refazendo o exercicio
+
+//letra (a):
+
+typedef struct TCLNode TCLNode;
+typedef struct TCList TCList;
+
+struct TCList{
+    TCLNode *end;
+    TCLNode *fnext;
+    int qtd;
+    int calls;
+};
+
+struct TCLNode{ // TAD Circle List Node
+    char data;
+    TCLNode *next;
+};
+
+//letra (b):
+#include <stdlib.h>
+
+int clist_find_next(TCList *cl, char *ch){
+    if(cl == NULL){
+        return -1;
+    }
+    if(cl->qtd == 0){
+        return NULL;
+    }
+    else{
+        cl->fnext = cl->end->next;
+        if(cl->calls == 1){
+            *ch = cl->fnext->data;
+            cl->calls++;
+        }
+        else{
+            for(int i = 0; i < cl->calls;){
+                cl->fnext = cl->fnext->next;
+            }
+            *ch = cl->fnext->data;
+        }
+    return 0;
+    }
+}
