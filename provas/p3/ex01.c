@@ -10,9 +10,6 @@ a nota máxima). Pode-se utilizar qualquer função já implementada na
 lista (que estão no .h)
 
 
-*/
-
-
 
 int list_erase_max_nota_n1(TDLinkedList *list){
     if(list == NULL){
@@ -44,7 +41,7 @@ int list_erase_max_nota_n1(TDLinkedList *list){
 /*  Descripition: Remove the student from the list by your position;
  *  Input: (The List's pointer to removal, your position in the list);
  *  Output: A code that can means success or error (0 in success cases, any other code in fail cases);  
- */ 
+ *
 int list_erase(TDLinkedList *list, int pos){
     if(list == NULL){
         return INVALID_NULL_POINTER;
@@ -72,4 +69,42 @@ int list_erase(TDLinkedList *list, int pos){
     aux2->prev = aux1;
     free(aux);
     return SUCCESS;
+}
+*/
+
+    // SUB - Refazendo o exercicio
+
+int list_erase_max_nota_n1(TDLinkedList *list){
+    if(list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    else{
+        DLNode *aux = list->begin;
+        DLNode *back;
+        DLNode *al;
+    
+        int max = 0;
+        while(aux->next != NULL){
+            if(aux->data.n1 > max){
+                max = aux->data.n1;
+            }
+            aux = aux->next;
+        }
+        int count = 1;
+        aux = list->begin;
+        while(aux->next != NULL){
+            if(aux->data.n1 == max){
+                al = aux;       //preenchendo o nó auxiliar com o nó a ser apagado;
+                back = aux->prev; //nó auxiliar para posicao anterior preenchido com a posicao anterior;
+                aux = aux->next; //nó auxiliar preenchido com a proxima posicao;
+                back->next = aux; //apontando a posicao anterior para o nova proxima posicao;
+                aux->prev = back //apontando a proxima posicao para a nova posicao anterior;
+                free(aux);
+                list->size--;
+            }else{
+                aux = aux->next; // caso não seja a nota maxima, apenas vai para a proxima posicao;
+            }
+            count++;
+        }
+    }
 }

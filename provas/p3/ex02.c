@@ -23,7 +23,7 @@ O resultado final da concatenação ficará na lista /pre/.
 
 Saída concatenada (armazenada em \pre\):
 pre <-> in <-> pos
-*/
+
 
 int list_concat3(TDLinkedList *pre, TDLinkedList *in, TDLinkedList *pos){
       if(pre == NULL)
@@ -46,6 +46,33 @@ int list_concat3(TDLinkedList *pre, TDLinkedList *in, TDLinkedList *pos){
             pre->size += in->size + pos->size;  //
             in->size = 0;                       // esqueci de fazer essas manipulações na prova;
             pos->size = 0;                      //// check:<<<erro: ok, acabei baixando essa versão mais nova e nao vou considerar esse trecho>>>>
+
+            return SUCCESS;
+      }
+}
+*/
+
+      //SUB - Refazendo o exercicio
+
+int list_concat3(TDLinkedList *pre, TDLinkedList *in, TDLinkedList *pos){
+      if(pre == NULL || in == NULL || pos == NULL) // verificacao de lista nula;
+            return -1; 
+      else if(pre->size == 0 || in->size == 0 || pos->size == 0) // verificacao de lista vazia;
+            return -1; 
+      else{
+            DLNode *aux = pre->end;
+            DLNone *aux1 = in->end;
+            
+            aux->next = in->begin;
+            in->begin = NULL;
+            in->end = NULL;
+            aux1->next = pos->begin;
+            pos->begin = NULL;
+            pre->end = pos->end;
+            pos->end = NULL;
+            pre->size += in->size + pos->size;  //
+            in->size = 0;                       // esqueci de fazer essas manipulações na prova;
+            pos->size = 0;                      //
 
             return SUCCESS;
       }
