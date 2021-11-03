@@ -23,19 +23,19 @@ Vetor Concatenado = [ 1, 5, 2, 10, 30]
 
 */
 
-int concatena_vetor(int *vet1, int *vet2, int tam1, int tam2, int **vet3, int tam3){
+int concatena_vetor(int *vet1, int *vet2, int tam1, int tam2, int **vet3, int *tam3){
     if(vet1 == NULL || vet2 == NULL){ 
         return -1;
     }
-    tam3 = tam1+tam2;
-    **vet3 = malloc((tam3)*sizeof(int));
+    *tam3 = tam1+tam2;
+    *vet3 = malloc((*tam3)*sizeof(int));
     int i = 0;
     for(i = 0; i < tam1; i++){
-        *vet3[i] = vet1[i];
+        vet3[i] = vet1[i];
     }
     int j = 0;
-    for(i = tam1; i < tam3; i++){
-        *vet3[i] = vet2[j];
+    for(i = tam1; i < *tam3; i++){
+        vet3[i] = vet2[j];
         j++;
     }
     return 0;
@@ -70,10 +70,11 @@ int main(){
     }
     printf("Aqui esta o resultado: [");
     for(int i = 0; i < tam3; i++){
-        printf("%d, ", vet3[i]);
+        printf("%d, ", *vet3);
         if(i+1 == tam3){
-            printf("%d]\n", vet3[i]);
+            printf("%d]\n", *vet3);
         }
+        vet3++;
     }
     return 0;
 }
