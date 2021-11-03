@@ -69,8 +69,8 @@ struct livro{
 typedef struct livro biblioteca;
 
 // Ex 01: permitir que o usuário cadastre quantos livros quiser
-//  - ler do teclado a quantidade de livros que o usuário escolheu
-//  - ler do teclado as informações dos livros
+// - ler do teclado a quantidade de livros que o usuário escolheu
+// - ler do teclado as informações dos livros
 int main(){
     int op;
     printf("\n------- Cadastro de Livros ---------\n");

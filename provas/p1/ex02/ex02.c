@@ -80,8 +80,7 @@ typedef struct livro biblioteca;
    // Ex02: utilizando a função de buscar, mostre
    // todas as informações do livro *usado* mais antigo
 
-   // Todas as funções de entrada e saída devem estar no programa
-   // principal
+   // Todas as funções de entrada e saída devem estar no programa principal
 
    // Dica: para testar, crie um vetor estático preenchido com alguns valores (opcional)
 

@@ -54,6 +54,7 @@ int main(){
     return 0;
 }*/
 
+
 // SUB - Refazendo o exercicio
 
 // Funcão: Cálculo do lucro
