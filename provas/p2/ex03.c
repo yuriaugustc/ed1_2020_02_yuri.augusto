@@ -29,7 +29,7 @@ mat2d_increase_size(mat,3,3)
   double *data; // ponteiro para os dados da matriz
  };
 
-*/
+
     //entreguei por entregar, tenho quase ctz que não está funcionando como deveria.
     //me embananei para fazer o preenchimento das posições corretas;
  TMat2D *mat2d_increase_size(TMat2D *mat, int i, int j){
@@ -53,5 +53,31 @@ mat2d_increase_size(mat,3,3)
     mat = aux;// check:<<<erro: cópia de duas variáveis locais>>>>
     free(aux);
     return mat;
-}
+}*/
 
+
+// SUB - Refazendo o exercicio
+#include <stdlib.h>
+
+TMat2D *mat2d_increase_size(TMat2D *mat, int i, int j){
+    if(mat == NULL){
+        return NULL;
+    }
+    if (i <= 0){
+        return NULL;
+    }
+    if (j <= 0){
+        return NULL;
+    }
+    TMat2D *aux = mat2D_create(i, j);
+    int k = 0, f = 0, value = 0;
+
+    for(k = 0; i < mat->nrows; i++){ // controle de linhas
+        for(f = 0; j < mat->ncolumns; j++){ // controle de colunas
+            value = imm_get_value(mat, k, f); // recebe o valor da posicao (k,f) da antiga matriz
+            imm_set_value(aux, k, f, value);  // insere novamente na mesma posicao de antes, mas na matriz com o novo tamanho;
+        }
+    }
+    free(mat); // desaloca a matriz antiga
+    return aux; // retornando a matriz com novo tamanho;
+}

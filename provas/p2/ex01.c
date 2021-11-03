@@ -19,7 +19,7 @@ troca_pos_lista( lista, 4, 10)
     int qtd;
     struct aluno dados[MAX];
  };
-*/
+
 int troca_pos_lista(Lista *li, int pos1, int pos2){
     if(li == NULL)
         return -1;
@@ -36,4 +36,29 @@ int troca_pos_lista(Lista *li, int pos1, int pos2){
     free(aux);
     return 0;
 }
+*/
 
+// SUB - Refazendo o exercicio
+
+
+#include <stdlib.h>
+#define MAX 100
+
+int troca_pos_lista(Lista *li, int pos1, int pos2){
+    if(li == NULL){
+        return -1;
+    }
+    if (pos1 <=0 || pos1 > li->qtd){
+        return -1;
+    }
+    if (pos2 <=0 || pos2 > li->qtd){
+        return -1;
+    }
+    struct aluno *aux;
+    *aux = li->dados[pos1-1];
+    li->dados[pos1-1] = li->dados[pos2-1];
+    li->dados[pos2-1] = *aux;
+
+    free(aux);
+    return 0;
+}

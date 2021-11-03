@@ -10,7 +10,7 @@ TAD, que diz que a posição 1 corresponde ao primeiro elemento da lista.
 
 Exemplo de chamada da função:
 remove_intervalo_lista(lista,5,9)
-*/
+
 int remove_intervalo_lista(Lista *li, int pos1, int pos2){
     if(li == NULL)
         return -1;
@@ -37,4 +37,28 @@ int remove_intervalo_lista(Lista *li, int pos1, int pos2){
     free(aux);
     return 0;
 }
+*/
 
+// SUB - Refazendo o exercicio
+
+
+#include <stdlib.h>
+
+int remove_intervalo_lista(Lista *li, int pos1, int pos2){
+    if(li == NULL){
+        return -1;
+    }
+    if(pos1 <=0 || pos1 > li->qtd){
+        return -1;
+    }
+    if(pos2 <=0 || pos2 > li->qtd){
+        return -1;
+    }
+    int j = pos2; // variavel auxiliar para modificar o valor equivalente ao de pos2;
+    for(int i = pos1-1; i <= li->qtd; i++){ // iniciando o vetor a partir da posicao solicitada-1, pois o vetor inicia em 0;
+        li->dados[i] = li->dados[j]; // a variavel i e j avancam conforme cada loop até o fim do vetor;
+        j++;
+    }
+    li->qtd = (pos2 - pos1)+1; // atualizando o tamanho do vetor; 
+    return 0;
+}
