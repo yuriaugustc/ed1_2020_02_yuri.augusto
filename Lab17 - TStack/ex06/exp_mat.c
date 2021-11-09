@@ -68,8 +68,9 @@ int main()
 {
     char equacao[101];
     float valores[26];
-    float num;
+    float num = 0.0;
     char c; 
+    TStack *pi = stack_create(), *pi2 = stack_create();
 
     printf("Digite a expressao (maximo 100 caracteres):");
     fgets(equacao,100,stdin);
@@ -90,9 +91,27 @@ int main()
         }
     }
     char *p = postfix(equacao);
-
-    for(int i = 0; i < strlen(equacao); i++) 
-        printf("Equacao postfix resolvida! Seu resultado é de: %c", p[i]);
+    char aux[50];
+    for(int i = strlen(p); i >= 0; i--){ //(A+B+(C*(D+E))+F)
+        stack_push(pi, p[i]);
+    }
+    for(int i = 0; i < strlen(p); i++){
+        stack_top(pi, &c);
+        stack_pop(pi);
+        if(aux[i] == '+'){
+            aux[strlen(aux)] += aux[i-2] + aux[i-1];
+        }
+        else if(aux[i] == '-'){
+            num += aux[i-2] - aux[i-1];
+        }
+        else if(aux[i] == '/'){
+            num += aux[i-2] / aux[i-1];
+        }
+        else if(aux[i] == '*'){
+            num += aux[i-2] * aux[i-1];
+        }
+    }
+    printf("Equacao postfix resolvida! Seu resultado eh: %.2lf\n", num);
 
     return 0;
 }
